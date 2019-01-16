@@ -68,21 +68,6 @@ export default class MySwiperComponent extends React.Component<Props, State> {
   }
 
   public shouldComponentUpdate(newProps: Props): boolean {
-    // console.log(newProps,this.swiper, '----');
-  //   if (this.swiper.getCurrentPage().pageX !== this.state.currentPage) {
-  //     this.swiper.enable();
-  //     let index = this.swiper.getCurrentPage().pageX;
-  //     if (index > this.props.bannerList.length - 1) {
-  //         index = index % this.props.bannerList.length
-  //     }
-  //     this.swiper.goToPage(index, 0, 0);
-  //     this.setState({
-  //         currentPage: index
-  //     });
-  //     // if (this.props.autoPlay) {
-  //     //     this.play()
-  //     // }
-  // }
     return true;
   }
 
@@ -102,8 +87,6 @@ export default class MySwiperComponent extends React.Component<Props, State> {
     this.setState({
       dots: dots
     })
-    // console.log('小圆点的lenght', this.state.dots, dots);
-    
   }
   /**
    * 初始化swiper
@@ -121,7 +104,6 @@ export default class MySwiperComponent extends React.Component<Props, State> {
       stopPropagation: true
   });
   this.swiper.on('scrollEnd', this.onScrollEnd.bind(this));
-  // console.log(this.swiper, this.state.currentPage,'____222_________');
 
   }
 
@@ -141,16 +123,11 @@ export default class MySwiperComponent extends React.Component<Props, State> {
     this.mySwiperChildren = this.mySwiperGroup.current.children;
     let width = 0;
     const sliderWidth = this.mySwiper.current.clientWidth;
-    // console.log(this.mySwiperGroup.current,this.mySwiperChildren, sliderWidth, '----sss---');
     for (const child of this.mySwiperChildren) {
         addClass(child, 'slider-item');
         width += sliderWidth;
         child.style.width = `${sliderWidth}px`
     }
-    // console.log(width, 'xiuxiu');
-    // if (this.props.loop) {
-    //     width += 2 * sliderWidth
-    // }
     this.mySwiperGroup.current.style.width = `${width}px`
   }
 
@@ -164,12 +141,10 @@ export default class MySwiperComponent extends React.Component<Props, State> {
       this.initDots();
       this.initSwiper();
     }, 20);
-    // console.log(BScroll, 'BScrollBScroll');
   }
 
   private onScrollEnd(): void {
     let pageIndex = this.swiper.getCurrentPage().pageX;
-    // console.log(this.swiper, pageIndex, '----------');
     this.setState({
       currentPage: pageIndex
     });

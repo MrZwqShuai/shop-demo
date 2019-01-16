@@ -6,27 +6,20 @@ import HotAreaComponent from './components/hot-area/index';
 import CheapAreaComponent from './components/cheap-area/index';
 import ActivityAreaComponent from './components/activity-area/index';
 import styles from './index.scss';
-interface Props {
+interface Props {}
 
-}
-
-interface State {
-  show: boolean;
-}
+interface State {}
 const HomePage = routeAnimation(
   class HomePage extends React.Component<Props, State> {
-
     constructor(props: Props) {
       super(props);
-      this.state = {
-        show: true
-      };
+      this.state = {};
     }
 
     public render() {
       return (
         <div className={styles.homeWrapper}>
-          {/* <MySwiperComponent /> */}
+          <MySwiperComponent />
           <NavBarComponent />
           <HotAreaComponent />
           <CheapAreaComponent />
@@ -34,12 +27,6 @@ const HomePage = routeAnimation(
         </div>
       );
     }
-    
-    private toggleState(): void {
-      this.setState({
-        show: !this.state.show
-      })
-    }
-   }
+  }
 );
 export default HomePage;
