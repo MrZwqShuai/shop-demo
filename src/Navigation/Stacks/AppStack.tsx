@@ -6,7 +6,7 @@ import ChannelPage from './../../Pages/Channel/index';
 import ShoppingCartPage from './../../Pages/ShoppingCart/index';
 import HeaderComponent from './../../Components/Header/index';
 import FooterComponent from './../../Components/Footer/index';
-import styles from '../../App.scss'
+import styles from '../../App.scss';
 export default class AppStack extends React.PureComponent {
   public render() {
     return (
@@ -17,14 +17,12 @@ export default class AppStack extends React.PureComponent {
           <Route
             path="/home"
             children={(props) => {
-              console.log(this.props,props, '-----home------');
               return <HomePage {...props} />;
             }}
           />
           <Route
             path="/channel"
             children={(props) => {
-              console.log(this.props,props, '-----channel------');
               return <ChannelPage {...props} />;
             }}
           />
@@ -34,7 +32,6 @@ export default class AppStack extends React.PureComponent {
               return <ShoppingCartPage {...props} />;
             }}
           />
-
           <Route
             path="/my"
             children={(props) => {
@@ -50,7 +47,5 @@ export default class AppStack extends React.PureComponent {
   /**
    * componentDidMounted
    */
-  public componentDidMount() {
-  }
-
+  public componentDidMount() {}
 }
