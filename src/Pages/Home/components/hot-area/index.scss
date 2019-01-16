@@ -1,0 +1,28 @@
+.hotWrapper{
+  width: 100%;
+  .hotTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .16rem;
+  }
+  .hotContent{
+    display: flex;
+    .hotContentLeft{
+      width: 2rem;
+      height: 4rem;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .hotContentRight{
+      width: 2rem;
+      height: 4rem;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
