@@ -1,0 +1,98 @@
+.channel-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow: hidden;
+  .channel-left-wrap {
+    // width: 86px;
+    height: 100%;
+    float: left;
+    background-color: #fff;
+    .am-tabs-default-bar-tab {
+      font-size: 14px;
+    }
+    .am-tabs-default-bar-tab-active {
+      color: #e93b3d;
+      background-color: #fff !important;
+    }
+    .am-tabs-default-bar-underline {
+      display: none !important;
+    }
+    .am-tabs-default-bar-left,
+    .am-tabs-default-bar-right {
+      background: #f8f8f8 !important;
+    }
+  }
+  .channel-right-wrap {
+    height: 100%;
+    padding-top: 16px;
+    margin-bottom: 100px;
+    background-color: #fff;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    .channel-cate-content {
+      margin-bottom: 0.5rem;
+      .head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.15rem;
+        padding-left: 0.1rem;
+        .title {
+          margin: 0;
+          font-size: 14px;
+          color: #333;
+        }
+        .head-link {
+          margin-right: 0.2rem;
+          color: #848689;
+          font-size: 10px;
+          line-height: 10px;
+        }
+      }
+      .cate-content {
+        width: 100%;
+        display: inline-block;
+      }
+      .cate-content-empty {
+        text-align: center;
+        line-height: 74px;
+        min-height: 74px;
+      }
+    }
+    .channel-content-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 33%;
+      float: left;
+      margin-bottom: 0.18rem;
+      .goods-img {
+        width: 100%;
+        text-align: center;
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+  }
+  .channel-right-wrap-empty {
+    text-align: center;
+    padding-top: 3rem;
+  }
+}
+
+.am-tabs {
+  overflow: scroll !important;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+}

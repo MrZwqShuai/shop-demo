@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import {Route} from 'react-router-dom';
 interface Props {
-  path: string,
-  component: any,
+  path: string;
+  component: any;
 }
 class AppRoute extends React.Component<Props> {
   constructor(props: Props) {
@@ -10,11 +10,11 @@ class AppRoute extends React.Component<Props> {
   }
   componentWillMount() {}
   render() {
-    const { component: Component, ...rest } = this.props;
+    const {component: Component, ...rest} = this.props;
     return (
       <Route
         {...rest}
-        render={(props) => {
+        render={props => {
           return <Component {...props} />;
         }}
       />

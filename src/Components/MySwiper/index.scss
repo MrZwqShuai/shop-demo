@@ -11,23 +11,17 @@
   white-space: nowrap;
 }
 .sliderItem {
+  width: 100%;
+  height: 3rem;
   display: inline-block;
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    text-decoration: none;
     img {
       display: block;
       box-sizing: border-box;
       width: 100%;
       height: 100%;
-      border-radius: 15px;
-    }
   }
 }
 .dots{

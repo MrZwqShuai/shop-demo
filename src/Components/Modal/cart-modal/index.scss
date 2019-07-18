@@ -1,0 +1,42 @@
+.cart-modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.41);
+  z-index: 99;
+  .cart-modal-main {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .header {
+      display: flex;
+      position: relative;
+      height: 0.6rem;
+      line-height: 0.6rem;
+      padding-left: 0.1rem;
+      color: #333;
+      background-color: #f3f2f8;
+    }
+    .body {
+      height: 4rem;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      background-color: #fff;
+      .sku-color {
+        height: 4rem;
+      }
+    }
+    .sure-btn {
+      height: 0.8rem;
+      line-height: 0.8rem;
+      text-align: center;
+      font-size: 0.31rem;
+      color: #fff;
+      background-color: #e4393c;
+    }
+  }
+}

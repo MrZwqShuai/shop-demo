@@ -1,0 +1,83 @@
+import fetch from "../Utils/http";
+import { AxiosPromise } from "axios";
+import { Result } from "../Interface";
+
+/**
+ * 获取app的登录状态
+ */
+export const fetchAppAuth = (): AxiosPromise<Result<void>> => {
+  return fetch({
+    url: "/app",
+    method: "get",
+  });
+};
+
+/**
+ * 获取首页banner
+ * @param data
+ */
+export const fetchHomeBanner = <T>(data: object): AxiosPromise<T> => {
+  return fetch({
+    url: "/home/banner",
+    method: "get",
+    data: data,
+  });
+};
+
+/**
+ * 获取首页导航nav
+ * @param data
+ */
+export const fetchHomeNavBar = <T>(data: T): AxiosPromise => {
+  return fetch({
+    url: "",
+    method: "get",
+    data: data,
+  });
+};
+
+/**
+ *
+ * @param data 商品分类id 如果不传则查找所有商品
+ */
+export const fetchGoods = (data?: object): AxiosPromise => {
+  return fetch({
+    url: "/goods",
+    method: "get",
+    params: data,
+  });
+};
+
+/**
+ * 用户登陆
+ * @returns token值
+ */
+export const login = (data?: object): AxiosPromise<Result<string | number>> => {
+  return fetch({
+    url: "/auth/login",
+    method: "post",
+    data,
+  });
+};
+
+/**
+ * 获取一级分类所有列表（这个后期是固定的长度）
+ */
+export const fetchCategoryLit = <T>(): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "/category/list",
+    method: "get",
+  });
+};
+
+/**
+ * 通过一级分类的id获取子类及其子子类的列表
+ * @param data
+ */
+export const fetchCategoryGrandsonLit = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "/category",
+    method: "get",
+    params: data,
+  });
+};

@@ -1,33 +1,39 @@
-@import '../../Config/theme/variables.scss';
-.headerWrapper{
-    position: fixed;
-    height: 44px;
-    max-width: 640px;
-    margin: auto;
-    top: 0;
-    left:0;
-    right: 0;
-    font-size: $fontSize;
-    background-color: $red;
-    z-index: 2;
-  }
-.headerUl{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-.headerLeft, .headerRight{
+@import "../../Config/theme/variables.scss";
+.headerWrapper {
+  position: fixed;
+  height: 44px;
+  max-width: 640px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: $fontSize;
+  background-color: $red;
+
+  z-index: 2;
+}
+.headerUl {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.headerLeft,
+.headerRight {
   width: 45px;
   text-align: center;
+  .personalIcon {
+    width: 0.35rem;
+    height: 0.36rem;
+  }
 }
-.headerCenter{
+.headerCenter {
   flex: 1;
   height: 30px;
   border-radius: 3px;
 }
-.search{
+.search {
   width: 100%;
   display: flex;
   align-items: center;
@@ -36,16 +42,15 @@
   color: #999;
   background-color: #fff;
 }
-.searchBtn{
+.searchBtn {
   display: flex;
   width: 18px;
   height: 18px;
   margin: 0 10px;
-  img{
+  img {
     width: 100%;
     height: 100%;
   }
 }
-.searchInp{
-
+.searchInp {
 }

@@ -1,0 +1,19 @@
+.goods-stack-wrapper {
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f7f7f7;
+}
+.goods-wrapper {
+  max-width: 640px;
+  margin: auto;
+  overflow: hidden;
+  .am-wingblank {
+    margin-top: 20px;
+  }
+}
+.buy-comments-area {
+}
+.m1 {
+  padding: 0 0.1rem;
+}

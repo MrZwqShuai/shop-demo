@@ -1,0 +1,67 @@
+.buy-area-wrapper {
+  .goods-wrap {
+    display: flex;
+    align-items: center;
+    margin-top: 0.2rem;
+    padding-bottom: 0.1rem;
+    background-color: #fff;
+    .goods-name {
+      font-size: 0.28rem;
+      color: #333;
+    }
+    .goods-line {
+      width: 1px;
+      height: 0.6rem;
+      margin: 0 0.15rem;
+      background-color: rgba(153, 153, 153, 0.29);
+    }
+    .goods-star {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 2rem;
+      .goods-star-icon {
+        width: 0.37rem;
+        height: 0.37rem;
+        background-image: url('../../assets//images//buy.png');
+        background-size: 1.7rem;
+        background-position: -0.855rem -0.05rem;
+      }
+      .star-active {
+        background-position: -0.855rem -0.42rem;
+      }
+    }
+  }
+  .goods-price {
+    background-color: #fff;
+    color: #e4393c;
+    font-size: 0.2rem;
+    font-weight: 700;
+    em {
+      color: #e4393c;
+      font-style: normal;
+      font-size: 0.3rem;
+    }
+  }
+  .goods-sku {
+    background-color: #fff;
+    margin-top: 0.1rem;
+    padding: 0.1rem 0.1rem;
+  }
+  .cell-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.22rem;
+    .cell-left {
+      display: flex;
+    }
+    .text-view {
+      color: rgb(153, 153, 153);
+    }
+    .linear-layout {
+      margin-left: 0.3rem;
+      color: #333;
+    }
+  }
+}
