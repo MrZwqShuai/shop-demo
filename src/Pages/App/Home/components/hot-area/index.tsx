@@ -1,6 +1,6 @@
-import * as React from 'react';
-import './index.scss';
-import {withRouter} from 'react-router-dom';
+import * as React from "react";
+import "./index.scss";
+import { withRouter } from "react-router-dom";
 
 @withRouter
 export default class HotAreaComponent extends React.PureComponent {
@@ -39,7 +39,7 @@ export default class HotAreaComponent extends React.PureComponent {
    * @param hotGoodsId 热卖id
    */
   private hotGoodsDetail(hotGoodsId: number): void {
-    console.log(this.props, '-----');
+    console.log(this.props, "-----");
     this.props.history.push({
       pathname: `/goods`,
       search: `id=${hotGoodsId}`,

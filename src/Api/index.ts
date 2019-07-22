@@ -38,7 +38,7 @@ export const fetchHomeNavBar = <T>(data: T): AxiosPromise => {
 
 /**
  *
- * @param data 商品分类id 如果不传则查找所有商品
+ * @param data 商品分类id 不传查找所有商品
  */
 export const fetchGoods = (data?: object): AxiosPromise => {
   return fetch({

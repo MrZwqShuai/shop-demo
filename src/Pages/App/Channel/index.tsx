@@ -10,12 +10,14 @@ import {
   CategoryGrandsonMix,
   CategoryGrandson,
 } from "../../../Interface";
+import { withRouter } from "react-router-dom";
 
 interface Props {}
 interface State {
   tabs: Array<object>;
   categoryGrandsonMixList: Array<CategoryGrandsonMix>;
 }
+
 const ChannelPage = routeAnimation(
   class ChannelPage extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -123,7 +125,12 @@ const ChannelPage = routeAnimation(
     }
     private renderChannelContentItem(categoryGrandson: CategoryGrandson) {
       return (
-        <div className="channel-content-item">
+        <div
+          className="channel-content-item"
+          onClick={() => {
+            this.handerChannelClick(categoryGrandson);
+          }}
+        >
           <div className="goods-img">
             <img src={categoryGrandson.category_thumbnail} alt="" />
           </div>
@@ -167,6 +174,20 @@ const ChannelPage = routeAnimation(
     private handleTabClick(item: { id: number }, index): void {
       Toast.loading("加载中...", 0);
       this.fetchCategoryGrandsonLit(item.id);
+    }
+
+    /**
+     *
+     * @param categoryGrandson {object} channel item
+     */
+    private handerChannelClick(categoryGrandson: CategoryGrandson): void {
+      this.props.history.push({
+        pathname: `/search`,
+        search: `keywords=${categoryGrandson.grandson_name}`,
+        state: {
+          id: categoryGrandson.id,
+        },
+      });
     }
 
     /**

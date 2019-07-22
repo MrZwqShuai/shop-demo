@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import LoginPage from './../../Pages/Auth/Login/index';
-import LogoutPage from './../../Pages/Auth/Logout/index';
+import * as React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import LoginPage from "./../../Pages/Auth/Login/index";
+import LogoutPage from "./../../Pages/Auth/Logout/index";
 
 export default class AuthStack extends React.PureComponent {
   render() {

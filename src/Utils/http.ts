@@ -56,7 +56,7 @@ instance.interceptors.response.use(
     if (err) {
       // RootStore.setLoading(false);
       Toast.hide();
-      Toast.fail("响应失败" + err);
+      Toast.fail("网络出错了,请检查网络");
     }
   },
 );

@@ -1,10 +1,14 @@
 import * as React from "react";
 import ICommonProduct from "./shared/common-product.interface";
+import { withRouter } from "react-router-dom";
 import "./index.scss";
 interface Props {
   products: ICommonProduct[];
+  // 排列方式
+  layout: string;
 }
 interface State {}
+@withRouter
 export default class CommonProducts extends React.PureComponent<Props, State> {
   static defaultProps: Props = {
     products: [
@@ -29,6 +33,7 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
         goods_name: "新品衣服",
       },
     ],
+    layout: "vertical",
   };
 
   constructor(props) {
@@ -56,7 +61,12 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
       return goods_name;
     };
     return (
-      <li className="commonProduct">
+      <li
+        className={this.props.layout}
+        onClick={() => {
+          this.handlerProducClick(product);
+        }}
+      >
         <div className="productImg">
           <img src={product.goods_photo} alt="商品图片" />
         </div>
@@ -67,7 +77,7 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
               {product.goods_name}
             </span>
           </p>
-          <p className="price">
+          <p className={`price-layout-${this.props.layout} price`}>
             <div>
               <span className="price-number">
                 <span className="dollar">￥</span>
@@ -80,5 +90,19 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
         </div>
       </li>
     );
+  }
+
+  /**
+   *
+   * @param product {object} produce item
+   */
+  private handlerProducClick(product: ICommonProduct): void {
+    this.props.history.push({
+      pathname: `/goods`,
+      search: `spu_no=${product.spu_no}`,
+      state: {
+        id: product.spu_no,
+      },
+    });
   }
 }

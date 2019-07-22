@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Route, Redirect} from 'react-router-dom';
-import HomePage from './../../Pages/App/Home/index';
-import MyPage from './../../Pages/App/My/index';
-import ChannelPage from './../../Pages/App/Channel/index';
-import ShoppingCartPage from './../../Pages/App/ShoppingCart/index';
-import HeaderComponent from './../../Components/Header/index';
-import FooterComponent from './../../Components/Footer/index';
-import '../../App.scss';
+import * as React from "react";
+import { Route, Redirect } from "react-router-dom";
+import HomePage from "./../../Pages/App/Home/index";
+import MyPage from "./../../Pages/App/My/index";
+import ChannelPage from "./../../Pages/App/Channel/index";
+import ShoppingCartPage from "./../../Pages/App/ShoppingCart/index";
+import HeaderComponent from "./../../Components/Header/index";
+import FooterComponent from "./../../Components/Footer/index";
+import "../../App.scss";
 export default class AppStack extends React.PureComponent {
   public render() {
     return (

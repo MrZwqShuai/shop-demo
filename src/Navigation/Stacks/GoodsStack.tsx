@@ -1,19 +1,25 @@
-import * as React from 'react';
-import {Switch, Route} from 'react-router-dom';
-import GoodsDetailPage from './../../Pages/Goods/GoodsDetail/index';
-import GoodsCommentsPage from './../../Pages/Goods/GoodsComments/index';
+import * as React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import GoodsDetailPage from "./../../Pages/Goods/GoodsDetail/index";
+import GoodsCommentsPage from "./../../Pages/Goods/GoodsComments/index";
+import GoodsSearchPage from "../../Pages/Goods/GoodsSearch/index";
 
 export default class GoodsStack extends React.PureComponent {
   public render() {
     return (
-      <div className="goods-stack-wrapper">
-        <div className="goods-wrapper">
-          <Switch>
-            <Route path="/" component={GoodsDetailPage} />
-            <Route path="/comments" component={GoodsCommentsPage} />
-          </Switch>
-        </div>
+      <div>
+        <Switch>
+          {/* <Route
+            path="/goods"
+            exact
+            render={() => <Redirect to="/goods/comments" />}
+          /> */}
+          <Route path="/goods" exact component={GoodsDetailPage} />
+          <Route path="/goods/comments" component={GoodsCommentsPage} />
+        </Switch>
       </div>
     );
   }
+
+  public componentDidMount() {}
 }
