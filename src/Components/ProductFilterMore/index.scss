@@ -1,0 +1,41 @@
+.product-filter-more-wrap {
+  overflow: auto;
+  min-height: 40px;
+  .table-bar {
+    overflow: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px 10px;
+    li {
+      display: inline-block;
+      width: 24%;
+      float: none;
+      padding-right: 6px;
+      font-size: 12px;
+      .bar-item {
+        position: relative;
+        display: block;
+        padding: 0 5px;
+        height: 25px;
+        line-height: 25px;
+        text-align: center;
+        color: #666;
+        background-color: #f2f2f7;
+        border-radius: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        i {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          margin-top: -2px;
+          width: 8px;
+          height: 5px;
+          background: url("./assets/images/down.png") no-repeat;
+          background-size: 8px auto;
+        }
+      }
+    }
+  }
+}

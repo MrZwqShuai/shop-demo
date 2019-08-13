@@ -3,7 +3,7 @@ import ICommonProduct from "./shared/common-product.interface";
 import { withRouter } from "react-router-dom";
 import "./index.scss";
 interface Props {
-  products: ICommonProduct[];
+  products: Array<ICommonProduct>;
   // 排列方式
   layout: string;
 }
@@ -32,6 +32,10 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
         goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
         goods_name: "新品衣服",
       },
+      {
+        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
+        goods_name: "品如的衣服",
+      },
     ],
     layout: "vertical",
   };
@@ -44,13 +48,17 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
     return (
       <div className="commonProductsWrap">
         <ul>
-          {this.props.products.map(product => {
-            return this.renderCommonProduct(product);
+          {this.props.products.map((product, index) => {
+            return this.renderCommonProduct(product, index);
           })}
         </ul>
       </div>
     );
   }
+
+  // public render() {
+  //   return this.renderCommonProduct(this.props.product);
+  // }
 
   public renderCommonProduct(product: ICommonProduct): JSX.Element {
     const goodsNameFilter = goods_name => {
@@ -77,7 +85,7 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
               {product.goods_name}
             </span>
           </p>
-          <p className={`price-layout-${this.props.layout} price`}>
+          <div className={`price-layout-${this.props.layout} price`}>
             <div>
               <span className="price-number">
                 <span className="dollar">￥</span>
@@ -86,7 +94,7 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
               <span className="price-welfare">满减</span>
             </div>
             <span className="similar">看相似</span>
-          </p>
+          </div>
         </div>
       </li>
     );
