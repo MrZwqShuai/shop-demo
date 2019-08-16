@@ -1,55 +1,46 @@
 import { observable, action } from "mobx";
 import ICommonProduct from "../Components/CommonProduct/shared/common-product.interface";
-import { PageOptions } from "../Interface";
+import { PageOptions, PageResult } from "../Interface";
+import { sortGoods } from "../Api";
+import { Toast } from "antd-mobile";
 class ProductsStore {
-  @observable products: Array<ICommonProduct> = [
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "新品衣服",
-    },
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "新品衣服",
-    },
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "新品衣服",
-    },
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "新品衣服",
-    },
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "新品衣服",
-    },
-    {
-      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-      goods_name: "品如的衣服",
-    },
-  ];
+  @observable products: Array<ICommonProduct> = [];
+  @observable pageOptions: PageOptions = {
+    pageNumber: 1,
+    pageSize: 6,
+  };
+  @observable pages: number = 1;
+  @observable noMore: boolean = false;
   /**
    *
-   * @param loadMore
+   * @param params
+   * fetch goods by sort words
    */
   @action
-  fetchProducts(loadMore: boolean, pageOptins?: PageOptions): void {
-    if (!loadMore) {
-      pageOptins = {
-        pageNumber: 1,
-        pageSize: 10,
-      };
+  async fetchProducts(
+    params: ICommonProduct,
+    isLoadMore: boolean = true,
+  ): Promise<any> {
+    if (!isLoadMore) {
+      Toast.loading("努力加载中...", 0);
+      this.products = [];
+      this.pageOptions.pageNumber = 1;
     }
-    this.products = this.products.concat([
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新增商品1",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新增商品2",
-      },
-    ]);
+    if (this.products.length && this.pageOptions.pageNumber > this.pages) {
+      this.noMore = true;
+      return;
+    }
+    const { data } = await sortGoods<PageResult<Array<ICommonProduct>>>(
+      Object.assign(params, {
+        pageNumber: this.pageOptions.pageNumber,
+        pageSize: this.pageOptions.pageSize,
+      }),
+    );
+    this.pageOptions.pageNumber++;
+    this.pages = data.content.pages;
+    this.products = this.products.concat(data.content.list.slice());
+    this.noMore = false;
+    console.log(params.pageNumber, this.pages, "====");
   }
 }
 

@@ -1,10 +1,14 @@
 import * as React from "react";
 import { List, Checkbox, Radio } from "antd-mobile";
+import { inject, observer } from "mobx-react";
 const CheckboxItem = Checkbox.CheckboxItem;
 const RadioItem = Radio.RadioItem;
 import "./index.scss";
 import { OnChangeParams } from "antd-mobile/lib/checkbox/PropsType";
 interface IOption {
+  // 筛选商品 排序字段
+  sortField?: string;
+  sort?: string;
   label: string;
   value: string;
   checked?: boolean;
@@ -21,6 +25,7 @@ interface FilterTab {
   value?: string;
   sort: boolean;
   hasUpDownIcon: boolean;
+  selected: boolean;
   options?: Array<IOption>;
 }
 type Props = {
@@ -38,6 +43,9 @@ type State = {
   filterTabs: Array<FilterTab>;
   currentTabIndex: number;
 };
+
+@inject("ProductsStore")
+@observer
 export default class ProductFilterComponent extends React.PureComponent<
   Props,
   State
@@ -49,6 +57,7 @@ export default class ProductFilterComponent extends React.PureComponent<
         title: "综合",
         sort: false,
         hasUpDownIcon: true,
+        selected: true,
       },
       {
         key: "XL",
@@ -56,12 +65,14 @@ export default class ProductFilterComponent extends React.PureComponent<
         value: "XL",
         sort: true,
         hasUpDownIcon: false,
+        selected: false,
       },
       {
         key: "FW",
         title: "服务",
         sort: false,
         hasUpDownIcon: true,
+        selected: false,
       },
       {
         key: "SX",
@@ -69,6 +80,7 @@ export default class ProductFilterComponent extends React.PureComponent<
         value: "SX",
         sort: false,
         hasUpDownIcon: false,
+        selected: false,
       },
     ],
   };
@@ -80,11 +92,35 @@ export default class ProductFilterComponent extends React.PureComponent<
       radioView: {
         viewShow: false,
         viewList: [
-          { label: "综合", value: "1", checked: true },
-          { label: "最新上架", value: "2", checked: false },
-          { label: "价格最低", value: "3", checked: false },
-          { label: "价格最高", value: "4", checked: false },
-          { label: "评价最多", value: "5", checked: false },
+          { sortField: "", sort: "", label: "综合", value: "1", checked: true },
+          {
+            sortField: "create_time",
+            label: "最新上架",
+            sort: "DESC",
+            value: "2",
+            checked: false,
+          },
+          {
+            sortField: "price",
+            sort: "ASC",
+            label: "价格最低",
+            value: "3",
+            checked: false,
+          },
+          {
+            sortField: "price",
+            label: "价格最高",
+            sort: "DESC",
+            value: "4",
+            checked: false,
+          },
+          {
+            sortField: "comments",
+            label: "评价最多",
+            sort: "ASC",
+            value: "5",
+            checked: false,
+          },
         ],
       },
       checkboxView: {
@@ -155,7 +191,9 @@ export default class ProductFilterComponent extends React.PureComponent<
         }}
         key={filterTab.key}
       >
-        <a>{filterTab.title}</a>
+        <a style={{ color: filterTab.selected ? "#e93b3d" : "#333" }}>
+          {filterTab.title}
+        </a>
         {filterTab.hasUpDownIcon ? (
           <span
             className={`${
@@ -284,6 +322,9 @@ export default class ProductFilterComponent extends React.PureComponent<
    */
   private handlerFilterTabClick(filterTab: FilterTab, index: number): void {
     console.log(filterTab, "dasdsadas");
+    this.setState({
+      currentTabIndex: index,
+    });
     if (filterTab.key == "ZH") {
       // 第一个tab
       this.setState({
@@ -296,6 +337,37 @@ export default class ProductFilterComponent extends React.PureComponent<
           viewShow: false,
         },
       });
+    } else if (filterTab.key == "XL") {
+      // 第二个tab
+      // this.state.filterTabs.map((item: FilterTab) => {
+      //   item.selected = false;
+      // });
+      this.state.filterTabs[index].selected = !this.state.filterTabs[index]
+        .selected;
+      this.state.filterTabs[0].selected = false;
+      console.log("dasdsad", this.state.currentTabIndex);
+      this.state.radioView.viewList.forEach((item: IOption) => {
+        item.checked = false;
+      });
+      this.state.checkboxView.viewList.forEach((item: IOption) => {
+        item.checked = false;
+      });
+      this.setState({
+        checkboxView: {
+          ...this.state.checkboxView,
+          viewShow: false,
+        },
+        radioView: {
+          ...this.state.radioView,
+          viewShow: false,
+        },
+      });
+      this.props.ProductsStore.fetchProducts(
+        {
+          sales: "DESC",
+        },
+        false,
+      );
     } else if (filterTab.key == "FW") {
       // 第三个tab
       this.setState({
@@ -309,9 +381,6 @@ export default class ProductFilterComponent extends React.PureComponent<
         },
       });
     }
-    this.setState({
-      currentTabIndex: index,
-    });
   }
 
   /**
@@ -321,6 +390,8 @@ export default class ProductFilterComponent extends React.PureComponent<
    */
   private handlerRadioItemCLick(option: IOption, index: number): void {
     this.state.filterTabs[this.state.currentTabIndex].title = option.label;
+    this.state.filterTabs[this.state.currentTabIndex].selected = true;
+    this.state.filterTabs[1].selected = false;
     this.state.radioView.viewList.forEach((item: IOption, index) => {
       item.checked = false;
     });
@@ -332,6 +403,10 @@ export default class ProductFilterComponent extends React.PureComponent<
         viewShow: false,
       },
     });
+    console.log(option, "dasdsa");
+    const params = {};
+    params[option.sortField] = option.sort;
+    this.props.ProductsStore.fetchProducts(params, false);
   }
 
   /**

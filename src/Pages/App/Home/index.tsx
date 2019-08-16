@@ -66,7 +66,7 @@ const HomePage = routeAnimation(
 
     private async fetchGoods(params: object): Promise<any> {
       const { data } = await fetchGoods(params);
-      console.log(data.content, "--首页大苏打撒旦-");
+      // console.log(data.content, "--首页大苏打撒旦-");
       this.setState({
         products: data.content,
       });

@@ -3,7 +3,7 @@ import ICommonProduct from "./shared/common-product.interface";
 import { withRouter } from "react-router-dom";
 import "./index.scss";
 interface Props {
-  products: Array<ICommonProduct>;
+  product: ICommonProduct;
   // 排列方式
   layout: string;
 }
@@ -11,32 +11,10 @@ interface State {}
 @withRouter
 export default class CommonProducts extends React.PureComponent<Props, State> {
   static defaultProps: Props = {
-    products: [
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新品衣服",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新品衣服",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新品衣服",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新品衣服",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "新品衣服",
-      },
-      {
-        goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
-        goods_name: "品如的衣服",
-      },
-    ],
+    product: {
+      goods_photo: "http://mcdn.pinduoduo.com/assets/img/mpdd_global.png",
+      goods_name: "品ru衣服",
+    },
     layout: "vertical",
   };
 
@@ -44,21 +22,21 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
     super(props);
   }
 
-  public render() {
-    return (
-      <div className="commonProductsWrap">
-        <ul>
-          {this.props.products.map((product, index) => {
-            return this.renderCommonProduct(product, index);
-          })}
-        </ul>
-      </div>
-    );
-  }
-
   // public render() {
-  //   return this.renderCommonProduct(this.props.product);
+  //   return (
+  //     <div className="commonProductsWrap">
+  //       <ul>
+  //         {this.props.products.map((product, index) => {
+  //           return this.renderCommonProduct(product, index);
+  //         })}
+  //       </ul>
+  //     </div>
+  //   );
   // }
+
+  public render() {
+    return this.renderCommonProduct(this.props.product);
+  }
 
   public renderCommonProduct(product: ICommonProduct): JSX.Element {
     const goodsNameFilter = goods_name => {

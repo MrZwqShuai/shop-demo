@@ -81,3 +81,15 @@ export const fetchCategoryGrandsonLit = <T>(data): AxiosPromise<Result<T>> => {
     params: data,
   });
 };
+
+/**
+ * 通过属性筛选商品列表
+ * @param data
+ */
+export const sortGoods = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "goods/sortBy",
+    method: "get",
+    params: data,
+  });
+};
