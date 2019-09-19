@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {withRouter} from 'react-router-dom';
-import MySwiperComponent from './../../../Components/MySwiper/index';
-import {Banner} from './../../../Components/MySwiper/shared/banner.interface';
-import BuyAreaComponent from './components/buy-area/index';
-import CommentsAreaComponent from './components/comments-area/index';
-import GuessAreaComponent from './components/guess-area/index';
-import './index.scss';
-import BuyBarComponent from './../../../Components/BuyBar/index';
+import * as React from "react";
+import { withRouter } from "react-router-dom";
+import MySwiperComponent from "./../../../Components/MySwiper/index";
+import { Banner } from "./../../../Components/MySwiper/shared/banner.interface";
+import BuyAreaComponent from "./components/buy-area/index";
+import CommentsAreaComponent from "./components/comments-area/index";
+import GuessAreaComponent from "./components/guess-area/index";
+import "./index.scss";
+import BuyBarComponent from "./../../../Components/BuyBar/index";
 interface Props {}
 
 interface State {
@@ -20,9 +20,9 @@ export default class GoodsDetailPage extends React.Component<Props, State> {
     this.state = {
       banners: [
         {
-          name: 'banner1',
-          src: '',
-          url: '',
+          name: "banner1",
+          src: "",
+          url: "",
         },
       ],
     };
@@ -42,6 +42,6 @@ export default class GoodsDetailPage extends React.Component<Props, State> {
   }
 
   public componentDidMount() {
-    console.log(this.props.location.state, '--222---');
+    console.log(this.props.location, "--222---");
   }
 }

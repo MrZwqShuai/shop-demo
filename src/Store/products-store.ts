@@ -22,7 +22,7 @@ class ProductsStore {
     isLoadMore: boolean = true,
   ): Promise<any> {
     if (!isLoadMore) {
-      Toast.loading("努力加载中...", 0);
+      Toast.loading("正在加载中...", 0);
       this.products = [];
       this.pageOptions.pageNumber = 1;
     }
@@ -40,7 +40,6 @@ class ProductsStore {
     this.pages = data.content.pages;
     this.products = this.products.concat(data.content.list.slice());
     this.noMore = false;
-    console.log(params.pageNumber, this.pages, "====");
   }
 }
 

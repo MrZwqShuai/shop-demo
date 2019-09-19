@@ -46,7 +46,7 @@ type State = {
 
 @inject("ProductsStore")
 @observer
-export default class ProductFilterComponent extends React.PureComponent<
+export default class ProductFilterComponent extends React.Component<
   Props,
   State
 > {

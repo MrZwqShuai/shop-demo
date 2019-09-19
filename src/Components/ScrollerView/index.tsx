@@ -1,7 +1,10 @@
 import * as React from "react";
 import { ListView } from "antd-mobile";
+import { inject, observer } from "mobx-react";
 import "./index.scss";
 import ReactDOM from "react-dom";
+import MyPagination from "../Pagination";
+import { number } from "prop-types";
 function mockWait(time: number): Promise<any> {
   return new Promise(res => {
     const timer = setTimeout(() => {
@@ -21,7 +24,9 @@ type Props = {
   loadMore: (event: any) => void;
   noMore: boolean;
 };
-type State = {};
+type State = {
+  paginationVisiable: boolean;
+};
 // export default class ScrollerViewComponent extends React.PureComponent<
 //   Props,
 //   State
@@ -67,13 +72,21 @@ let rowIDs = [];
 //   sectionIDs = [...sectionIDs];
 //   rowIDs = [...rowIDs];
 // }
+
+@inject("ProductsStore")
+@observer
 export default class ScrollerViewComponent extends React.Component<
   Props,
   State
 > {
+  beforeCountdownScrollTop: number = 0;
+  afterCountdownScrollTop: number = 0;
+  countdownTimer: any;
   constructor(props: Props) {
     super(props);
-
+    this.state = {
+      paginationVisiable: false,
+    };
     const dataSource = new ListView.DataSource({
       // getRowData,
       // getSectionHeaderData: getSectionData,
@@ -132,7 +145,28 @@ export default class ScrollerViewComponent extends React.Component<
     });
   };
 
+  private handlerScroll(e: Event): void {
+    clearTimeout(this.countdownTimer);
+    this.beforeCountdownScrollTop = e.target.scrollTop;
+    this.countdownTimer = setTimeout(() => {
+      this.isScrollend(e);
+    }, 1000);
+    this.setState({
+      paginationVisiable: true,
+    });
+  }
+
+  private isScrollend(e): void {
+    this.afterCountdownScrollTop = e.target.scrollTop;
+    if (this.beforeCountdownScrollTop == this.afterCountdownScrollTop) {
+      this.setState({
+        paginationVisiable: false,
+      });
+    }
+  }
+
   render() {
+    const { paginationVisiable } = this.state;
     const separator = (sectionID, rowID) => (
       <div
         key={`${sectionID}-${rowID}`}
@@ -145,43 +179,50 @@ export default class ScrollerViewComponent extends React.Component<
       />
     );
     return (
-      <ListView
-        className="scroller-view-wrap"
-        ref={el => (this.lv = el)}
-        dataSource={this.state.dataSource}
-        renderFooter={() => (
-          <div style={{ padding: 30, textAlign: "center" }}>
-            {this.props.noMore
-              ? "我也是有底线的~"
-              : this.state.isLoading
-              ? "加载中..."
-              : "加载数据完成"}
-          </div>
-        )}
-        // renderSectionHeader={sectionData => (
-        //   <div>{`Task ${sectionData.split(" ")[1]}`}</div>
-        // )}
-        // renderBodyComponent={() => <MyBody />}
-        // renderRow={(rowData, sectionID, rowID) => {
-        //   console.log(rowData, sectionID, rowID, "rowDatarowDatarowData");
-        //   return this.props.children;
-        // }}
-        renderRow={this.props.renderRow}
-        // renderSeparator={separator}
-        style={{
-          height: this.state.height,
-          overflow: "auto",
-        }}
-        pageSize={1}
-        onScroll={() => {
-          console.log("scroll");
-        }}
-        scrollRenderAheadDistance={500}
-        onEndReached={event => {
-          this.onEndReached(event);
-        }}
-        onEndReachedThreshold={10}
-      />
+      <div>
+        <ListView
+          className="scroller-view-wrap"
+          ref={el => (this.lv = el)}
+          dataSource={this.state.dataSource}
+          renderFooter={() => (
+            <div style={{ padding: 30, textAlign: "center" }}>
+              {this.props.noMore
+                ? "我也是有底线的~"
+                : this.state.isLoading
+                ? "加载中..."
+                : "加载数据完成"}
+            </div>
+          )}
+          // renderSectionHeader={sectionData => (
+          //   <div>{`Task ${sectionData.split(" ")[1]}`}</div>
+          // )}
+          // renderBodyComponent={() => <MyBody />}
+          // renderRow={(rowData, sectionID, rowID) => {
+          //   console.log(rowData, sectionID, rowID, "rowDatarowDatarowData");
+          //   return this.props.children;
+          // }}
+          renderRow={this.props.renderRow}
+          // renderSeparator={separator}
+          style={{
+            height: this.state.height,
+            overflow: "auto",
+          }}
+          pageSize={1}
+          onScroll={e => {
+            this.handlerScroll(e);
+          }}
+          scrollRenderAheadDistance={500}
+          onEndReached={event => {
+            this.onEndReached(event);
+          }}
+          onEndReachedThreshold={10}
+        />
+        <MyPagination
+          current={this.props.ProductsStore.pageOptions.pageNumber - 1}
+          total={this.props.ProductsStore.pages}
+          visiable={paginationVisiable}
+        />
+      </div>
     );
   }
 }
