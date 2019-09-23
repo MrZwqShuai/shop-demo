@@ -164,31 +164,39 @@
 import * as React from "react";
 import { Carousel, WingBlank } from "antd-mobile";
 
-export default class MySwiperComponent extends React.Component {
+interface Props {
+  datasource: string[];
+  layout: string;
+}
+
+interface State {}
+
+export default class MySwiperComponent extends React.Component<Props, State> {
   state = {
     data: ["1", "2", "3"],
     imgHeight: 176,
   };
-  componentDidMount() {
-    // simulate img loading
-    setTimeout(() => {
-      this.setState({
-        data: [
-          "http://47.98.137.213/uploads/shop/banner1.jpg",
-          "http://47.98.137.213/uploads/shop/banner2.jpg",
-          "http://47.98.137.213/uploads/shop/banner4.jpg",
-        ],
-      });
-    }, 100);
+  static defaultProps = {
+    datasource: [
+      "http://47.98.137.213/uploads/shop/banner1.jpg",
+      "http://47.98.137.213/uploads/shop/banner2.jpg",
+      "http://47.98.137.213/uploads/shop/banner4.jpg",
+    ],
+    layout: "normal",
+  };
+  constructor(props: Props) {
+    super(props);
   }
+  componentDidMount() {}
   render() {
+    const { datasource, layout } = this.props;
     return (
       <WingBlank>
         <Carousel
           className="space-carousel"
           frameOverflow="visible"
-          cellSpacing={10}
-          slideWidth={0.8}
+          cellSpacing={layout == "normal" ? 0 : 10}
+          slideWidth={layout == "normal" ? 1 : 0.8}
           autoplay
           infinite
           beforeChange={(from, to) =>
@@ -196,30 +204,37 @@ export default class MySwiperComponent extends React.Component {
           }
           afterChange={index => this.setState({ slideIndex: index })}
         >
-          {this.state.data.map((val, index) => (
-            <a
-              key={val}
-              href="http://www.alipay.com"
-              style={{
-                display: "block",
-                position: "relative",
-                top: this.state.slideIndex === index ? -10 : 0,
-                height: this.state.imgHeight,
-                boxShadow: "2px 1px 1px rgba(0, 0, 0, 0.2)",
-              }}
-            >
-              <img
-                src={val}
-                alt=""
-                style={{ width: "100%", verticalAlign: "top" }}
-                onLoad={() => {
-                  // fire window resize event to change height
-                  window.dispatchEvent(new Event("resize"));
-                  this.setState({ imgHeight: "auto" });
+          {Array.isArray(datasource) &&
+            datasource.length &&
+            datasource.map((val, index) => (
+              <a
+                key={val}
+                href="http://www.alipay.com"
+                style={{
+                  display: "block",
+                  position: "relative",
+                  top:
+                    this.state.slideIndex === index
+                      ? layout == "normal"
+                        ? 0
+                        : -10
+                      : 0,
+                  height: this.state.imgHeight,
+                  boxShadow: "2px 1px 1px rgba(0, 0, 0, 0.2)",
                 }}
-              />
-            </a>
-          ))}
+              >
+                <img
+                  src={val}
+                  alt=""
+                  style={{ width: "100%", verticalAlign: "top" }}
+                  onLoad={() => {
+                    // fire window resize event to change height
+                    window.dispatchEvent(new Event("resize"));
+                    this.setState({ imgHeight: "auto" });
+                  }}
+                />
+              </a>
+            ))}
         </Carousel>
       </WingBlank>
     );

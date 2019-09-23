@@ -93,3 +93,27 @@ export const sortGoods = <T>(data): AxiosPromise<Result<T>> => {
     params: data,
   });
 };
+
+/**
+ * 获取商品详情
+ * @param data
+ */
+export const fetchGoodsDetail = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "goods/detail",
+    method: "get",
+    params: data,
+  });
+};
+
+/**
+ * 用户收藏商品
+ * @param data
+ */
+export const starGoodsByUser = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "auth/starGoodsByUserId",
+    method: "get",
+    params: data,
+  });
+};

@@ -19,7 +19,7 @@ class GoodsSearchPage extends React.Component {
     console.log(this.pageNumber, noMore, "使对方的实力");
 
     return (
-      <div>
+      <div style={{ margin: "auto", maxWidth: "640px" }}>
         <div className="goods-filter-wrap">
           <div className="goods-filter-more">
             <ProductFilterComponent />

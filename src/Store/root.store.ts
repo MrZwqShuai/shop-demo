@@ -1,6 +1,7 @@
 import { observable, action } from "mobx";
 class RootStore {
   @observable userId: string = "";
+  @observable userInfo: object = {};
   @observable isLogin: boolean = false;
   @observable token: string = "";
   @observable cartModalVisbile: boolean = false;
@@ -26,6 +27,11 @@ class RootStore {
   @action
   setLogin(isLogin: boolean): void {
     this.isLogin = isLogin;
+  }
+
+  @action
+  setUserInfo(userInfo: object): void {
+    this.userInfo = userInfo;
   }
 }
 

@@ -31,7 +31,7 @@ const HomePage = routeAnimation(
       const { products } = this.state;
       return (
         <div className="homeWrapper">
-          <MySwiperComponent banners={this.state.banners} />
+          <MySwiperComponent layout="spaceCarousal" />
           <NavBarComponent />
           <HotAreaComponent />
           <CheapAreaComponent />

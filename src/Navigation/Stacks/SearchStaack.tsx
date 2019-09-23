@@ -5,7 +5,7 @@ import GoodsSearchPage from "../../Pages/Goods/GoodsSearch/index";
 export default class SeatchStack extends React.PureComponent {
   public render() {
     return (
-      <div>
+      <div style={{ width: "100vw" }}>
         <Switch>
           <Route path="/search" component={GoodsSearchPage} />
         </Switch>

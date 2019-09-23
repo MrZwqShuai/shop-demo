@@ -8,7 +8,7 @@ import rootStore from "../Store/root.store";
 // import { RootStore } from '~store';
 // import Toast from '~components/NewToast';
 
-const BASE_URL = "http://localhost:8088/wqshop/";
+const BASE_URL = "http://localhost:8081/wqshop/";
 
 // 添加请求拦截器
 const instance = axios.create({

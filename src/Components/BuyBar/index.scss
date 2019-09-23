@@ -1,10 +1,72 @@
 .buy-bar-wrapper {
+  display: flex;
+  align-items: center;
   position: fixed;
   bottom: 0;
   left: 50%;
   width: 100%;
   max-width: 640px;
-  height: 1rem;
+  // height: 1rem;
   transform: translateX(-50%);
-  background: #ff9600;
+  background: #fff;
+  .customer-service {
+    width: 48px;
+    height: 100%;
+    color: #666;
+    .customer-icon {
+      background: url("./images/customer.png") 50% no-repeat;
+    }
+  }
+  .go-shop {
+    width: 48px;
+    height: 100%;
+    color: #666;
+    .shop-icon {
+      background: url("./images/shop.png") 50% no-repeat;
+    }
+  }
+  .shopping-cart {
+    width: 48px;
+    height: 100%;
+    color: #666;
+    .shopping-cart-icon {
+      background: url("./images/shopping-cart.png") 50% no-repeat;
+    }
+  }
+  .add-shopping-cart {
+    flex: 1;
+    background: linear-gradient(138deg, #ffa600, #ffb000 77%, #ffbc00);
+  }
+  .buy {
+    flex: 1;
+    z-index: 10;
+    background: -webkit-linear-gradient(131deg, #ff4f18, #ff2000 24%, #f10000);
+    background: linear-gradient(-41deg, #ff4f18, #ff2000 24%, #f10000);
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .bar-m1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .bar-m2 {
+    font-size: 14px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .bar-m3 {
+    display: block;
+    width: 20px;
+    height: 25px;
+    margin: 5px auto 0;
+    background-size: 100% !important;
+    position: relative;
+    cursor: pointer;
+  }
 }

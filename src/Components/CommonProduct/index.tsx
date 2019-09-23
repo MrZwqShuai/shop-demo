@@ -85,10 +85,7 @@ export default class CommonProducts extends React.PureComponent<Props, State> {
   private handlerProducClick(product: ICommonProduct): void {
     this.props.history.push({
       pathname: `/goods`,
-      search: `spu_no=${product.spu_no}`,
-      state: {
-        id: product.spu_no,
-      },
+      search: `?spu_no=${product.spu_no}`,
     });
   }
 }

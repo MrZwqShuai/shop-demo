@@ -1,8 +1,9 @@
 .buy-area-wrapper {
   .goods-wrap {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 0.2rem;
+    padding-top: 0.2rem;
     padding-bottom: 0.1rem;
     background-color: #fff;
     .goods-name {
@@ -23,7 +24,7 @@
       .goods-star-icon {
         width: 0.37rem;
         height: 0.37rem;
-        background-image: url('../../assets//images//buy.png');
+        background-image: url("../../assets//images//buy.png");
         background-size: 1.7rem;
         background-position: -0.855rem -0.05rem;
       }

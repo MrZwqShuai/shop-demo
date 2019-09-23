@@ -93,11 +93,12 @@ export default class LoginPage extends React.PureComponent<Props, State> {
         Toast.fail(message, 2);
       } else {
         // 设置token 到本地缓存
-        localStorage.setItem("token", String(content));
+        localStorage.setItem("token", String(content.token));
+        this.props.RootStore.setUserInfo(content.userInfo);
         Toast.success("登录成功", 2);
         const loginTimer = setTimeout(() => {
           clearTimeout(loginTimer);
-          this.props.history.push("/home");
+          this.props.history.go(-1);
         }, 800);
         this.props.RootStore.setLogin(true);
       }

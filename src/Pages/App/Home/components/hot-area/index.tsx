@@ -42,10 +42,7 @@ export default class HotAreaComponent extends React.PureComponent {
     console.log(this.props, "-----");
     this.props.history.push({
       pathname: `/goods`,
-      search: `id=${hotGoodsId}`,
-      state: {
-        id: hotGoodsId,
-      },
+      search: `?id=${hotGoodsId}`,
     });
   }
 }

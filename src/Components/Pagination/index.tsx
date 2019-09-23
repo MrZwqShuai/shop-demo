@@ -26,5 +26,4 @@ export default class MyPagination extends React.Component<Props, State> {
     );
   }
 
-  componentWillReceiveProps(newProps) {}
 }
