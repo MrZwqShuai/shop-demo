@@ -32,7 +32,9 @@ class App extends React.Component<Props, State> {
     console.log(data, "appauth");
     if (data.code === 0) {
       // 登录成功状态
-      this.props.RootStore.setLogin(true);
+      this.props.RootStore.setUserInfo(
+        JSON.parse(localStorage.getItem("userInfo")) || {},
+      );
     }
   }
 }

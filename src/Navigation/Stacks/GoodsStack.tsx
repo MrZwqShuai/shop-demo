@@ -14,7 +14,7 @@ export default class GoodsStack extends React.PureComponent {
             exact
             render={() => <Redirect to="/goods/comments" />}
           /> */}
-          <Route path="/goods" exact component={GoodsDetailPage} />
+          <Route path="/goods" component={GoodsDetailPage} />
           <Route path="/goods/comments" component={GoodsCommentsPage} />
         </Switch>
       </div>

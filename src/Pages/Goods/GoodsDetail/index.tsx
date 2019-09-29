@@ -59,11 +59,19 @@ export default class GoodsDetailPage extends React.Component<Props, State> {
     this.fetchGoodsDetail(spu_no);
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log(newProps, "----newProps---");
+    const { spu_no } = qs.parse(newProps.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    this.fetchGoodsDetail(spu_no);
+  }
+
   /**
    * fetch goodsdetail by spu_no
    * @param spu_no goods_spu number
    */
-  async fetchGoodsDetail(spu_no: string) {
+  async fetchGoodsDetail(spu_no: number) {
     let { data } = await fetchGoodsDetail<GoodsSpuDetail>({
       spuNo: spu_no,
     });

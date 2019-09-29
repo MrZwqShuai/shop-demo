@@ -1,5 +1,6 @@
 import * as React from "react";
 import { inject, observer } from "mobx-react";
+import qs from "qs";
 import "./index.scss";
 import arrowRight from "../../../../../Assets/images/arrow-right.png";
 import { GoodsSpuDetail } from "../../../../../Interface/goods";
@@ -11,7 +12,7 @@ interface Props {
   goodsSpuDetail: GoodsSpuDetail;
 }
 interface State {
-  followed: boolean;
+  followed: number;
 }
 
 @inject("RootStore")
@@ -21,7 +22,7 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      followed: false,
+      followed: 0,
     };
   }
 
@@ -42,7 +43,7 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
           >
             <span
               className={`goods-star-icon ${
-                this.state.followed ? "star-active" : null
+                this.state.followed == 1 ? "star-active" : null
               }`}
             />
             <span>关注</span>
@@ -64,6 +65,13 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
         </div>
       </div>
     );
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log(newProps, "---哈哈哈-");
+    this.setState({
+      followed: newProps.goodsSpuDetail.status,
+    });
   }
 
   private renderCell(textView: string, linearLayout: string) {
@@ -90,13 +98,18 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
    * @param goodsId 商品id
    */
   private async follow(goodsId: string): void {
-    if (this.props.RootStore.isLogin) {
-      let { data } = await starGoodsByUser({
-        spuId: 1,
-        userId: toJS(this.props.RootStore.userInfo).user_id,
-        // 收藏状态 1收藏 -1未收藏
-        state: this.state.followed ? -1 : 1,
-      });
+    const { user_id } = this.props.RootStore.userInfo;
+    const { spu_no } = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true,
+    });
+    if (true) {
+      let { data } =
+        (await starGoodsByUser({
+          spuId: spu_no,
+          userId: toJS(this.props.RootStore.userInfo).user_id,
+          // 收藏状态 1收藏 -1未收藏
+          state: this.state.followed ? -1 : 1,
+        })) || {};
       if (data.code === 0) {
         this.setState({
           followed: !this.state.followed,

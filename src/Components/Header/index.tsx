@@ -5,6 +5,7 @@ import categoryIcon from "./assets/images/category.png";
 import searchIcon from "./assets/images/search.png";
 import personalIcon from "./assets/images/personal.png";
 import { inject, observer } from "mobx-react";
+import { toJS } from "mobx";
 
 @inject("RootStore")
 @observer
@@ -14,7 +15,12 @@ export default class HeaderComponent extends React.PureComponent {
    * render
    */
   public render() {
-    const { isLogin } = this.props.RootStore;
+    const { user_id } = toJS(this.props.RootStore.userInfo);
+    console.log(
+      toJS(this.props.RootStore.userInfo),
+      this.props.RootStore.userInfo,
+    );
+
     return (
       <header className="headerWrapper">
         <ul className="headerUl">
@@ -33,7 +39,7 @@ export default class HeaderComponent extends React.PureComponent {
               </div>
             </Link>
           </li>
-          {this.renderLoginEntry(isLogin)}
+          {this.renderLoginEntry(user_id)}
         </ul>
       </header>
     );
@@ -43,10 +49,10 @@ export default class HeaderComponent extends React.PureComponent {
 
   /**
    *
-   * @param isLogin 当前登录状态
+   * @param user_id user_id
    */
-  private renderLoginEntry(isLogin: boolean): JSX.Element {
-    if (isLogin) {
+  private renderLoginEntry(user_id: boolean): JSX.Element {
+    if (user_id) {
       return (
         <li className="headerRight">
           <Link to="/my">
