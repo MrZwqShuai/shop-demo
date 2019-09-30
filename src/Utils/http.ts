@@ -33,14 +33,9 @@ instance.interceptors.request.use(
     config.params = Object.assign({}, config.params, {
       userId: userInfo.user_id,
     });
-    console.log(config.params, "dasdjshadklhkl");
     config.data = Qs.stringify(config.data);
     config.headers["token"] = userInfo.token || "";
-    console.log(
-      "config配置:",
-      config,
-      Qs.stringify(Object.assign(config.data, { userId: 9999 })),
-    );
+    console.log("config配置:", config, Qs.stringify(config.data));
     return config;
   },
   err => {
@@ -56,7 +51,7 @@ instance.interceptors.response.use(
     console.log("response:", response);
     if (data.code !== 0) {
       console.log(data, "失败");
-      if (data.code === -2) {
+      if (data.code === -5) {
         // 用户无登录信息或登录信息失效
         // rootStore.setLogin(false);
         history.push(LOGIN_ROUTE_PATH);

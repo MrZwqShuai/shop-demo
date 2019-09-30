@@ -1,21 +1,45 @@
-import * as React from 'react';
-import routeAnimation from '../../../Config/animation/route-animation';
-import CarItemComponent from './componets/cart-item/index';
-import './index.scss';
-import CartModalComponent from './../../../Components/Modal/cart-modal/index';
+import * as React from "react";
+import routeAnimation from "../../../Config/animation/route-animation";
+import CarItemComponent from "./componets/cart-item/index";
+import "./index.scss";
+import CartModalComponent from "./../../../Components/Modal/cart-modal/index";
+import { fetchOrderCartListByUser } from "../../../Api";
+import { OrderCart } from "../../../Interface";
+
+interface State {
+  orderCartList: Array<OrderCart>;
+}
+
+interface Props {}
+
 const ShoppingCartPage = routeAnimation(
-  class ShoppingCartPage extends React.PureComponent {
+  class ShoppingCartPage extends React.PureComponent<Props, State> {
+    constructor(props: Props) {
+      super(props);
+      this.state = {
+        orderCartList: [],
+      };
+    }
     public render() {
       return (
         <div className="cart-wrapper">
           {/* {this.renderEmpty()} */}
           {/* {this.renderUnlogin()} */}
-          <CarItemComponent />
-          <CarItemComponent />
-          <CarItemComponent />
-          <CarItemComponent />
+          {this.state.orderCartList.length ? (
+            this.state.orderCartList.map((orderCart: OrderCart) => {
+              return <CarItemComponent orderCart={orderCart} />;
+            })
+          ) : (
+            <div style={{ marginTop: "35px", textAlign: "center" }}>
+              购物车空空如也~
+            </div>
+          )}
         </div>
       );
+    }
+
+    componentWillMount() {
+      this.fetchOrderCartListByUser();
     }
 
     private renderEmpty(): JSX.Element {
@@ -37,6 +61,17 @@ const ShoppingCartPage = routeAnimation(
       );
     }
 
+    private async fetchOrderCartListByUser() {
+      let { data } = await fetchOrderCartListByUser<Array<OrderCart>>({});
+      console.log(data.content, "==========");
+      if (data.code === 0) {
+        data.content.length &&
+          this.setState({
+            orderCartList: data.content,
+          });
+      }
+    }
+
     private remove(cartNumber: number): void {
       // remove cart..
     }
@@ -45,12 +80,12 @@ const ShoppingCartPage = routeAnimation(
      * 设置标题
      */
     public setDocTitle(): void {
-      document.title = '购物车';
+      document.title = "购物车";
     }
 
     public componentDidMount() {
       this.setDocTitle();
     }
-  }
+  },
 );
 export default ShoppingCartPage;

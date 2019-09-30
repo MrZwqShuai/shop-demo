@@ -7,6 +7,7 @@ import { GoodsSpuDetail } from "../../../../../Interface/goods";
 import { withRouter } from "react-router-dom";
 import { starGoodsByUser } from "../../../../../Api";
 import { toJS } from "mobx";
+import { Toast } from "antd-mobile";
 interface Props {
   goodsId?: string;
   goodsSpuDetail: GoodsSpuDetail;
@@ -102,23 +103,23 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
     const { spu_no } = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true,
     });
-    if (true) {
-      let { data } =
-        (await starGoodsByUser({
-          spuId: spu_no,
-          userId: toJS(this.props.RootStore.userInfo).user_id,
-          // 收藏状态 1收藏 -1未收藏
-          state: this.state.followed ? -1 : 1,
-        })) || {};
-      if (data.code === 0) {
-        this.setState({
-          followed: !this.state.followed,
-        });
-      }
-    } else {
-      this.props.history.push({
-        pathname: "/auth/login",
+    let { data } =
+      (await starGoodsByUser({
+        spuId: spu_no,
+        userId: toJS(this.props.RootStore.userInfo).user_id,
+        // 收藏状态 1收藏 -1未收藏
+        state: this.state.followed == 1 ? -1 : 1,
+      })) || {};
+    if (data.code === 0) {
+      this.setState({
+        followed: this.state.followed == 1 ? -1 : 1,
       });
+      Toast.info(
+        `${this.state.followed == 1 ? "收藏成功" : "取消成功"}`,
+        2,
+        null,
+        false,
+      );
     }
   }
 

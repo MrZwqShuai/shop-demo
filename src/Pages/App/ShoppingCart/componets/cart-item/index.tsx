@@ -1,13 +1,14 @@
-import * as React from 'react';
-import {inject, observer} from 'mobx-react';
-import Cart from '../../shared/cart.interface';
-import noSelectedIcon from '../../assets/images/no-selected.png';
-import selectedIcon from '../../assets/images/selected.png';
-import shopIcon from '../../assets/images/shop.png';
-import './index.scss';
+import * as React from "react";
+import { inject, observer } from "mobx-react";
+import Cart from "../../shared/cart.interface";
+import noSelectedIcon from "../../assets/images/no-selected.png";
+import selectedIcon from "../../assets/images/selected.png";
+import shopIcon from "../../assets/images/shop.png";
+import "./index.scss";
+import { OrderCart } from "../../../../../Interface";
 interface Props {
   RootStore?: any;
-  cart?: Cart;
+  orderCart: OrderCart;
 }
 
 interface State {
@@ -15,18 +16,26 @@ interface State {
   goodsnumber: string;
 }
 
-@inject('RootStore')
+@inject("RootStore")
 @observer
 export default class CarItemComponent extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       active: false,
-      goodsnumber: '1',
+      goodsnumber: "1",
     };
   }
 
   public render() {
+    const {
+      goods_name,
+      goods_count,
+      goods_photo,
+      goods_price,
+      price,
+      cart_no,
+    } = this.props.orderCart;
     return (
       <div className="cart-item-wrapper" onClick={() => this.handleSelect()}>
         <div className="cart-item-left">{this.renderSelected(1)}</div>
@@ -42,15 +51,10 @@ export default class CarItemComponent extends React.Component<Props, State> {
           </div>
           <div className="cart-item-body">
             <div className="body-left">
-              <img
-                src="https://img10.360buyimg.com/mobilecms/s117x117_jfs/t1/2751/21/11778/286734/5bd1462eE9152a154/15708a469c99b913.jpg!q70.dpg.webp"
-                alt="商品"
-              />
+              <img src={goods_photo} alt={goods_name} />
             </div>
             <div className="body-right">
-              <div className="name">
-                301 仿古收音机蓝牙音箱 官方标配【音箱+充电线】
-              </div>
+              <div className="name">{goods_name}</div>
               <p
                 className="sku"
                 onClick={() => {
@@ -61,8 +65,8 @@ export default class CarItemComponent extends React.Component<Props, State> {
               </p>
               <div className="goods-line">
                 <span className="price">
-                  ￥<em>11</em>
-                  .90
+                  ￥<em>{price}</em>
+                  .00
                 </span>
                 <div className="add-more">
                   <span className="minus" onClick={this.removeGoodsNumber}>
@@ -151,8 +155,8 @@ export default class CarItemComponent extends React.Component<Props, State> {
    * 选择商品的sku规则
    */
   private skuChoose(): void {
-    console.log(this.props.RootStore.toggleCartModalVisbile, '---------');
-    const {toggleCartModalVisbile} = this.props.RootStore;
+    console.log(this.props.RootStore.toggleCartModalVisbile, "---------");
+    const { toggleCartModalVisbile } = this.props.RootStore;
     toggleCartModalVisbile();
   }
 }

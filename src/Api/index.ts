@@ -117,3 +117,15 @@ export const starGoodsByUser = <T>(data): AxiosPromise<Result<T>> => {
     params: data,
   });
 };
+
+/**
+ * 用户购物车列表
+ * @param data
+ */
+export const fetchOrderCartListByUser = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "ordercart/list",
+    method: "get",
+    params: data,
+  });
+};
