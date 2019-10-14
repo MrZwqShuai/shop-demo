@@ -2,4 +2,59 @@
   width: 100%;
   min-height: 100vw;
   background-color: #f7f7f7;
+  .cart-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    height: 50px;
+    background: hsla(0, 0%, 100%, 0.95);
+    font-size: 14px;
+    .btn {
+      float: right;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      display: block;
+      width: 76px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 4px;
+      background-color: #fff;
+      color: #333;
+      margin: 10px 10px 0 0;
+    }
+    .btn-remove {
+      border: none;
+      display: block;
+      width: 76px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 4px;
+      background-color: #f2270c;
+      color: #fff;
+    }
+    .btn-star {
+      float: right;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      display: block;
+      width: 76px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 4px;
+      background-color: #fff;
+      color: #333;
+      margin: 10px 10px 0 0;
+    }
+  }
 }

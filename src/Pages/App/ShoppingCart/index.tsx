@@ -34,6 +34,13 @@ const ShoppingCartPage = routeAnimation(
               购物车空空如也~
             </div>
           )}
+          <div className="cart-foot">
+            <i>全选</i>
+            <div className="btns-wrap">
+              <div className="btn-star btn">移至收藏</div>
+              <div className="btn-remove btn">删除</div>
+            </div>
+          </div>
         </div>
       );
     }

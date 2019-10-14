@@ -1,6 +1,6 @@
-import * as React from 'react';
-import CSSTransition from 'react-transition-group/CSSTransition';
-import './route-animation.scss';
+import * as React from "react";
+import CSSTransition from "react-transition-group/CSSTransition";
+import "./route-animation.scss";
 interface Props {
   path: string;
   show: boolean;
@@ -18,10 +18,10 @@ const routeAnimation = function(WrappedComponent: any): any {
         <CSSTransition
           in={this.props.match !== null}
           classNames={{
-            enter: 'starEnter',
-            enterActive: 'starEnterActive',
-            exit: 'starExit',
-            exitActive: 'starExitActive',
+            enter: "starEnter",
+            enterActive: "starEnterActive",
+            exit: "starExit",
+            exitActive: "starExitActive",
           }}
           timeout={500}
           mountOnEnter={true}

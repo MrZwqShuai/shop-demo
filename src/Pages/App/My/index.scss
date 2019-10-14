@@ -1,0 +1,43 @@
+.mypage-wrap {
+  .mypage-head-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 136px;
+    background-image: linear-gradient(to right, #fd9126, #ff5000);
+    background-color: white;
+    color: #fff;
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .user-name {
+      margin-left: 12px;
+    }
+    .mypage-head-setting {
+      margin-right: 15px;
+    }
+  }
+  .mypage-body-wrap {
+    margin-top: -45px;
+    .mypage-goods-star-wrap {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: auto;
+      background-color: #fff;
+      width: 95.8%;
+      height: 67px;
+      border-radius: 6px;
+    }
+  }
+}

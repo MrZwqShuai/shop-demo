@@ -129,3 +129,16 @@ export const fetchOrderCartListByUser = <T>(data): AxiosPromise<Result<T>> => {
     params: data,
   });
 };
+
+
+/**
+ * 用户购物车删除
+ * @param data
+ */
+export const removeOrderCartByUser = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "ordercart/remove",
+    method: "post",
+    params: data,
+  });
+};

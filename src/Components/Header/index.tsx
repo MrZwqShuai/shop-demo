@@ -1,27 +1,30 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./index.scss";
 import categoryIcon from "./assets/images/category.png";
 import searchIcon from "./assets/images/search.png";
 import personalIcon from "./assets/images/personal.png";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
+import { hideHeaderPath } from "../../Config/common-route";
 
 @inject("RootStore")
-@observer
-export default class HeaderComponent extends React.PureComponent {
+// @observer
+@withRouter
+export default class HeaderComponent extends React.Component {
   private currentSearch: string | number = "搜索你想要的商品";
   /**
    * render
    */
   public render() {
+    console.log(1111111111111);
     const { user_id } = toJS(this.props.RootStore.userInfo);
-    console.log(
-      toJS(this.props.RootStore.userInfo),
-      this.props.RootStore.userInfo,
-    );
+    const { pathname } = this.props.location;
+    const shouldHideHeader = hideHeaderPath.some((path: string) => {
+      return pathname == path;
+    });
 
-    return (
+    return shouldHideHeader ? null : (
       <header className="headerWrapper">
         <ul className="headerUl">
           <li className="headerLeft">
@@ -45,7 +48,7 @@ export default class HeaderComponent extends React.PureComponent {
     );
   }
 
-  public componentDidMount() {}
+  public componentWillReceiveProps(newVal) {}
 
   /**
    *
