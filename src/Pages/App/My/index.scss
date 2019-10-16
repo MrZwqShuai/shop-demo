@@ -4,7 +4,7 @@
     justify-content: space-between;
     align-items: center;
     height: 136px;
-    background-image: linear-gradient(to right, #fd9126, #ff5000);
+    background-image: linear-gradient(to right, #9e9e9e, #cc1b1b);
     background-color: white;
     color: #fff;
     .user-info {
@@ -28,15 +28,59 @@
     }
   }
   .mypage-body-wrap {
-    margin-top: -45px;
-    .mypage-goods-star-wrap {
+    margin-top: -25px;
+    .body-item {
+      margin-bottom: 20px !important;
+    }
+    .mypage-goods-star-wrap,
+    .mypage-goods-wrap {
+      .body-item-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        max-height: 67px;
+        .goods-star {
+          background: url("./assets/images/goods-star.png") no-repeat;
+        }
+        .shop-star {
+          background: url("./assets/images/shop-star.png") no-repeat;
+        }
+        // .history {
+        //   background: url("./assets/images/shop-star.png") no-repeat;
+        // }
+        .goods-pay {
+          background: url("./assets/images/pay-goods.png") no-repeat;
+        }
+        .goods-send {
+          background: url("./assets/images/no-send-goods.png") no-repeat;
+        }
+        .goods-receive {
+          background: url("./assets/images/send-goods.png") no-repeat;
+        }
+        .orders {
+          background: url("./assets/images/order-info.png") no-repeat;
+        }
+        .icon {
+          width: 23px;
+          height: 23px;
+          background-size: 100%;
+        }
+        .txt {
+          margin-top: 3px;
+        }
+      }
+    }
+    .mypage-goods-star-wrap,
+    .mypage-goods-wrap,
+    .mypage-other-wrap {
       display: flex;
       justify-content: space-around;
       align-items: center;
       margin: auto;
+      padding: 28px 0;
       background-color: #fff;
       width: 95.8%;
-      height: 67px;
       border-radius: 6px;
     }
   }

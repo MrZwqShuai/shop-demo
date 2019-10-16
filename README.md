@@ -1,4 +1,23 @@
 # shop-demo
-React+TypeScript+React-Router4实现spa单页应用demo
 
-##### demo地址: [shop-demo](http://47.98.137.213/shop-demo/)
+React+TypeScript+React-Router4 实现 spa 单页应用 demo
+
+##### demo 地址: [shop-demo](http://47.98.137.213/shop-demo/)
+
+待完成
+收获地址模块
+收货地址列表
+新增收货地址
+编辑收货地址
+删除收货地址
+地址标签（根据 userId 创建）新增删除 自定义
+
+个人中心模块
+用户头像 展示上传
+用户名 昵称展示 （昵称可修改）
+待付款 待收货 退换/售后 全部订单展示
+商品收藏 店铺收藏 我的足迹展示 （展示数量）
+
+评论模块
+评论总数 展示评论前面的几条信息
+查看商品全部评价

@@ -20,13 +20,52 @@ const MyPage = routeAnimation(
           </div>
           <div className="mypage-body-wrap">
             {/* 个人资产 */}
-            <div className="mypage-cash-wrap">我的资产</div>
-            <div className="mypage-goods-star-wrap">
-              <div>商品收藏</div>
-              <div>店铺收藏</div>
-              <div>我的足迹</div>
+            <div className="mypage-goods-wrap body-item">
+              <div className="body-item-row">
+                <span className="icon goods-pay"></span>
+                <span className="txt">待付款</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon goods-send"></span>
+                <span className="txt">待发货</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon goods-receive"></span>
+                <span className="txt">待收货</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon orders"></span>
+                <span className="txt">全部订单</span>
+              </div>
             </div>
-            <div className="mypage-other-wrap">我的预约</div>
+            <div className="mypage-goods-star-wrap body-item">
+              <div className="body-item-row">
+                <span className="icon goods-star"></span>
+                <span className="txt">商品收藏</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon shop-star"></span>
+                <span className="txt">店铺收藏</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon">18</span>
+                <span className="txt">我的足迹</span>
+              </div>
+            </div>
+            <div className="mypage-other-wrap body-item">
+              <div className="body-item-row">
+                <span className="icon goods-star"></span>
+                <span className="txt">商品收藏</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon shop-star"></span>
+                <span className="txt">店铺收藏</span>
+              </div>
+              <div className="body-item-row">
+                <span className="icon history"></span>
+                <span className="txt">我的足迹</span>
+              </div>
+            </div>
           </div>
         </div>
       );
