@@ -28,15 +28,16 @@ const HomePage = routeAnimation(
     }
 
     public render() {
-      const { products } = this.state;
+      const { products, banners } = this.state;
       return (
         <div className="homeWrapper">
-          <MySwiperComponent layout="spaceCarousal" />
+          <MySwiperComponent layout="spaceCarousal" datasource={banners} />
           <NavBarComponent />
           <HotAreaComponent />
-          <CheapAreaComponent />
+          {/* <CheapAreaComponent /> */}
           <ActivityAreaComponent />
-          <CommonProducts products={products} />
+          <ActivityAreaComponent />
+          {/* <CommonProducts products={products} /> */}
           {/* <GoodsListComponent list={[{ name: "zwq", src: "" }]} /> */}
         </div>
       );
@@ -57,7 +58,7 @@ const HomePage = routeAnimation(
       try {
         const { data } = await fetchHomeBanner<Array<Banner>>(params);
         this.setState({
-          banners: data,
+          banners: data.content,
         });
       } catch (e) {
         console.log("错误信息: ", e.message);
@@ -66,7 +67,6 @@ const HomePage = routeAnimation(
 
     private async fetchGoods(params: object): Promise<any> {
       const { data } = await fetchGoods(params);
-      // console.log(data.content, "--首页大苏打撒旦-");
       this.setState({
         products: data.content,
       });

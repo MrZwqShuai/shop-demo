@@ -21,7 +21,7 @@ class App extends React.Component<Props, State> {
     return <AppRouter />;
   }
   public componentDidMount() {
-    // this.fetchAuth();
+    this.fetchAuth();
   }
 
   /**

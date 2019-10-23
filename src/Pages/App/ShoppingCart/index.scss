@@ -9,10 +9,11 @@
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 50px;
     margin: 0 auto;
     height: 50px;
-    background: hsla(0, 0%, 100%, 0.95);
+    max-width: 640px;
+    background: rgba(255, 255, 255, 0.27);
     font-size: 14px;
     .btn {
       float: right;

@@ -23,6 +23,7 @@ type Props = {
   data?: Array<object>;
   loadMore: (event: any) => void;
   noMore: boolean;
+  onScrollTop?: (scrollTop: Event) => void;
 };
 type State = {
   paginationVisiable: boolean;
@@ -148,6 +149,7 @@ export default class ScrollerViewComponent extends React.Component<
   private handlerScroll(e: Event): void {
     clearTimeout(this.countdownTimer);
     this.beforeCountdownScrollTop = e.target.scrollTop;
+    // this.props.onScrollTop(e);
     this.countdownTimer = setTimeout(() => {
       this.isScrollend(e);
     }, 1000);

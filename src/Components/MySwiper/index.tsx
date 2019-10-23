@@ -163,9 +163,10 @@
 
 import * as React from "react";
 import { Carousel, WingBlank } from "antd-mobile";
+import { Banner } from "./shared/banner.interface";
 
 interface Props {
-  datasource: string[];
+  datasource: Banner[];
   layout: string;
 }
 
@@ -178,9 +179,9 @@ export default class MySwiperComponent extends React.Component<Props, State> {
   };
   static defaultProps = {
     datasource: [
-      "http://47.98.137.213/uploads/shop/banner1.jpg",
-      "http://47.98.137.213/uploads/shop/banner2.jpg",
-      "http://47.98.137.213/uploads/shop/banner4.jpg",
+      // "http://47.98.137.213/uploads/shop/banner1.jpg",
+      // "http://47.98.137.213/uploads/shop/banner2.jpg",
+      // "http://47.98.137.213/uploads/shop/banner4.jpg",
     ],
     layout: "normal",
   };
@@ -190,6 +191,7 @@ export default class MySwiperComponent extends React.Component<Props, State> {
   componentDidMount() {}
   render() {
     const { datasource, layout } = this.props;
+    console.log(datasource, "datasourcedatasourcedatasource");
     return (
       <WingBlank>
         <Carousel
@@ -206,9 +208,9 @@ export default class MySwiperComponent extends React.Component<Props, State> {
         >
           {Array.isArray(datasource) &&
             datasource.length &&
-            datasource.map((val, index) => (
+            datasource.map((banner, index) => (
               <a
-                key={val}
+                key={index}
                 href="http://www.alipay.com"
                 style={{
                   display: "block",
@@ -224,7 +226,7 @@ export default class MySwiperComponent extends React.Component<Props, State> {
                 }}
               >
                 <img
-                  src={val}
+                  src={banner.src}
                   alt=""
                   style={{ width: "100%", verticalAlign: "top" }}
                   onLoad={() => {

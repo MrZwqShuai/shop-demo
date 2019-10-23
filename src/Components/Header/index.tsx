@@ -6,7 +6,8 @@ import searchIcon from "./assets/images/search.png";
 import personalIcon from "./assets/images/personal.png";
 import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
-import { hideHeaderPath } from "../../Config/common-route";
+import { hideHeaderPath, routesMap } from "../../Config/common-route";
+import MyHeader from "../MyHeader";
 
 @inject("RootStore")
 // @observer
@@ -17,14 +18,16 @@ export default class HeaderComponent extends React.Component {
    * render
    */
   public render() {
-    console.log(1111111111111);
-    const { user_id } = toJS(this.props.RootStore.userInfo);
+    console.log(1111111111111, toJS(this.props.RootStore.userInfo));
+    const { user_id } = JSON.parse(localStorage.getItem("userInfo")) || {};
     const { pathname } = this.props.location;
     const shouldHideHeader = hideHeaderPath.some((path: string) => {
       return pathname == path;
     });
 
-    return shouldHideHeader ? null : (
+    return shouldHideHeader ? (
+      <MyHeader centerContent={<span>{routesMap[pathname]}</span>} />
+    ) : (
       <header className="headerWrapper">
         <ul className="headerUl">
           <li className="headerLeft">

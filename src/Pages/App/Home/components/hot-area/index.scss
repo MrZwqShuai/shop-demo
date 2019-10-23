@@ -1,28 +1,94 @@
-.hotWrapper{
+.hotWrapper {
   width: 100%;
-  .hotTitle{
+  background-color: #fff;
+  .hotTitle {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 .16rem;
+    // padding: 0 0.16rem;
+    .title {
+      margin: 12.5px 6px;
+      padding-left: 7px;
+      font-size: 16px;
+      border-left: 3px solid #f44336;
+    }
+    .more {
+      display: flex;
+      align-items: center;
+      margin-right: 7px;
+      font-size: 12px;
+    }
   }
-  .hotContent{
+  .hotContent {
     display: flex;
-    .hotContentLeft{
-      width: 2rem;
-      height: 4rem;
-      img{
+    .hotContentLeft {
+      flex: 1.1;
+      height: 2.3rem;
+      padding: 0 3px;
+      border-right: 1px solid rgba(153, 153, 153, 0.27);
+      img {
         width: 100%;
         height: 100%;
       }
     }
-    .hotContentRight{
-      width: 2rem;
-      height: 4rem;
-      img{
+    .hotContentRight {
+      flex: 1;
+      height: 2.3rem;
+      display: flex;
+      flex-direction: column;
+      .first-item {
+        border-bottom: 1px solid rgba(153, 153, 153, 0.27);
+      }
+      .right-item {
+        display: flex;
+        justify-content: space-between;
+        flex: 1;
+        height: 1.4rem;
+        padding: 5px 5px;
+        .hot-right-desc {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 1;
+        }
+        .title {
+          height: 20px;
+          background-color: orange;
+          padding: 4px;
+          font-size: 12px;
+          border-top-right-radius: 6px;
+          border-bottom-left-radius: 6px;
+          color: #fff;
+        }
+        .desc {
+          max-width: 80px;
+          margin-top: 6px;
+          font-size: 0.2rem;
+        }
+        .hot-right-img {
+          flex: 1;
+        }
+      }
+      img {
         width: 100%;
         height: 100%;
       }
     }
+  }
+}
+
+.advertisement-wrap {
+  margin-top: 8px;
+  height: 70px;
+  background: #fff;
+  padding: 9px 5px;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
