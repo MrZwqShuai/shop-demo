@@ -2,7 +2,7 @@
 
 React+TypeScript+React-Router4 实现 spa 单页应用 demo
 
-##### demo 地址: [shop-demo](http://47.98.137.213/shop-demo/)
+##### demo 地址: [shop-demo](http://47.98.137.213/shop-demo/) 体验账号用户名admin 密码123456
 
 待完成
 收获地址模块
