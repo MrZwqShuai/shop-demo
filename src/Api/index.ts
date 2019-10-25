@@ -107,6 +107,18 @@ export const fetchGoodsDetail = <T>(data): AxiosPromise<Result<T>> => {
 };
 
 /**
+ * 用户收藏列表
+ * @param data
+ */
+export const fetchGoodsStarsByUserId = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "auth/findGoodsStarsByUserId",
+    method: "get",
+    params: data,
+  });
+};
+
+/**
  * 用户收藏商品
  * @param data
  */

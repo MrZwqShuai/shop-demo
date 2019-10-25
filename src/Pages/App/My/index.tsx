@@ -2,6 +2,11 @@ import * as React from "react";
 import "./index.scss";
 import routeAnimation from "../../../Config/animation/route-animation";
 import { Toast } from "antd-mobile";
+enum FavoutiteEnum {
+  Goods,
+  Shop,
+}
+
 @withRouter
 const MyPage = routeAnimation(
   class MyPage extends React.Component {
@@ -30,7 +35,8 @@ const MyPage = routeAnimation(
               className="mypage-head-setting"
               onClick={() => this.handleSettingClick()}
             >
-              去{user_id ? "设置" : "登录"}
+              <span>去{user_id ? "设置" : "登录"}</span>
+              <span className="setting"></span>
             </div>
           </div>
           <div className="mypage-body-wrap">
@@ -54,11 +60,17 @@ const MyPage = routeAnimation(
               </div>
             </div>
             <div className="mypage-goods-star-wrap body-item">
-              <div className="body-item-row">
+              <div
+                className="body-item-row"
+                onClick={() => this.goFavouritePage(FavoutiteEnum.Goods)}
+              >
                 <span className="icon goods-star"></span>
                 <span className="txt">商品收藏</span>
               </div>
-              <div className="body-item-row">
+              <div
+                className="body-item-row"
+                onClick={() => this.goFavouritePage(FavoutiteEnum.Shop)}
+              >
                 <span className="icon shop-star"></span>
                 <span className="txt">店铺收藏</span>
               </div>
@@ -93,6 +105,17 @@ const MyPage = routeAnimation(
       this.setState({
         user_id: user_id,
         nickname: nickname,
+      });
+    }
+
+    /**
+     *
+     * @param favoutiteEnumType 收藏的类型(1 商品 2 店铺)
+     */
+    private goFavouritePage(favoutiteType: boolean): void {
+      this.props.history.push({
+        pathname: "/auth/favourite",
+        search: `?favoutiteType=${favoutiteType}`,
       });
     }
 

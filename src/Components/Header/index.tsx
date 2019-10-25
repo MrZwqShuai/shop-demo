@@ -8,11 +8,18 @@ import { inject, observer } from "mobx-react";
 import { toJS } from "mobx";
 import { hideHeaderPath, routesMap } from "../../Config/common-route";
 import MyHeader from "../MyHeader";
+import { Icon } from "antd-mobile";
+import MyPropover from "../MyPropover";
+
+interface Props {
+  myRightContent?: Array<JSX.Element>;
+}
+interface State {}
 
 @inject("RootStore")
 // @observer
 @withRouter
-export default class HeaderComponent extends React.Component {
+export default class HeaderComponent extends React.Component<Props, State> {
   private currentSearch: string | number = "搜索你想要的商品";
   /**
    * render
@@ -26,7 +33,10 @@ export default class HeaderComponent extends React.Component {
     });
 
     return shouldHideHeader ? (
-      <MyHeader centerContent={<span>{routesMap[pathname]}</span>} />
+      <MyHeader
+        centerContent={<span>{routesMap[pathname]}</span>}
+        rightContent={this.renderRightContent(pathname)}
+      />
     ) : (
       <header className="headerWrapper">
         <ul className="headerUl">
@@ -73,6 +83,31 @@ export default class HeaderComponent extends React.Component {
         </li>
       );
     }
+  }
+
+  private renderRightContent(pathname: string): Array<JSX.Element> {
+    if (pathname == "/my") {
+      return this.renderMyRightContent();
+    } else {
+      return null;
+    }
+  }
+
+  private renderMyRightContent(): Array<JSX.Element> {
+    return [
+      <span
+        className="my-right-icon"
+        onClick={() => this.handleSettingClick()}
+      ></span>,
+      <MyPropover />,
+    ];
+  }
+
+  /**
+   * 跳转个人设置中心
+   */
+  private handleSettingClick(): void {
+    this.props.history.push({ pathname: "/setting" });
   }
 
   // public navigateMyPage(): void {}

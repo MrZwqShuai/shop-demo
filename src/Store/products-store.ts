@@ -23,6 +23,9 @@ class ProductsStore {
     isRefresh: boolean = true,
   ): Promise<any> {
     if (!isLoadMore || isRefresh) {
+      if (this.products.length && !isRefresh) {
+        return;
+      }
       Toast.loading("正在加载中...", 0);
       this.products = [];
       this.pageOptions.pageNumber = 1;

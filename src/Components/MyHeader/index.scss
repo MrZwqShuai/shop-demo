@@ -1,20 +1,20 @@
 .myheader-wrap {
-  // position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 99;
   header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
     max-width: 640px;
     margin: auto;
   }
 
   .am-navbar-left,
-  .am-navbar-title,
+  // .am-navbar-title,
   .am-navbar-right {
-    flex: none !important;
+    flex: 0.2 !important;
   }
   .am-navbar-title {
-    flex: 1 !important;
+    flex: 0.6 !important;
   }
 }

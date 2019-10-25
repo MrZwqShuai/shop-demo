@@ -226,7 +226,7 @@ export default class MySwiperComponent extends React.Component<Props, State> {
                 }}
               >
                 <img
-                  src={banner.src}
+                  src={banner}
                   alt=""
                   style={{ width: "100%", verticalAlign: "top" }}
                   onLoad={() => {

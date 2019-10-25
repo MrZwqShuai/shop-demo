@@ -5,5 +5,6 @@ const routesMap = {
   "/channel": "分类",
   "/cart": "购物车",
   "/my": "个人中心",
+  "/setting": "账号管理",
 };
 export { hideHeaderPath, hideFooterPath, routesMap };

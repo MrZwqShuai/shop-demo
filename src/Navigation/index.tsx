@@ -6,6 +6,7 @@ import AuthStack from "./Stacks/AuthStack";
 import CartModalComponent from "./../Components/Modal/cart-modal/index";
 import GoodsStack from "./Stacks/GoodsStack";
 import SeatchStack from "./Stacks/SearchStaack";
+import SettingStack from "./Stacks/SettingStack";
 class AppRouter extends React.Component {
   render() {
     return (
@@ -15,6 +16,7 @@ class AppRouter extends React.Component {
             <AppRoute path="/auth" component={AuthStack} />
             <AppRoute path="/goods" component={GoodsStack} />
             <AppRoute path="/search" component={SeatchStack} />
+            <AppRoute path="/setting" component={SettingStack} />
             <AppRoute path="/" component={AppStack} />
           </Switch>
           <CartModalComponent />

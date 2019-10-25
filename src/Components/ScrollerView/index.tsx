@@ -101,12 +101,14 @@ export default class ScrollerViewComponent extends React.Component<
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      console.log("_____", this.props.data);
+      this.lv.scrollTo(0, 670);
+    }, 800);
     // you can scroll to the specified position
   }
 
   componentWillReceiveProps(props) {
-    console.log(props, "willreceive");
-
     const hei =
       document.documentElement.clientHeight -
       ReactDOM.findDOMNode(this.lv).parentNode.offsetTop;
