@@ -65,7 +65,7 @@
     "@types/react-dom": "^16.0.11",
     "babel-plugin-import": "^1.11.0",
     "fork-ts-checker-webpack-plugin": "^0.2.10",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "sass-loader": "^7.1.0",
     "typescript": "^3.2.2"
   },
