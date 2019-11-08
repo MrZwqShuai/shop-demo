@@ -1,0 +1,20 @@
+.mycell-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #e7e7e7ba;
+  .right-content {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    font-size: 12px;
+    color: #999;
+  }
+  .left-content {
+    margin-left: 6px;
+    font-size: 15px;
+    color: #333;
+  }
+}

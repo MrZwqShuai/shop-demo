@@ -67,7 +67,7 @@ class GoodsSearchPage extends React.Component<Props, State> {
           onTouchMove={e => {
             this.handleTouchMove(e);
           }}
-          onTouchStart={e => {
+          onTouchEnd={e => {
             this.handleTouchEnd(e);
           }}
         >
@@ -106,7 +106,7 @@ class GoodsSearchPage extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.fetchProducts({}, undefined, true);
+    this.fetchProducts({}, undefined, true, true);
     window.onmousewheel = e => this.handleMouseWheel(e);
   }
 
@@ -173,8 +173,14 @@ class GoodsSearchPage extends React.Component<Props, State> {
     params: ICommonProduct,
     isLoadMore?: boolean,
     isRefresh: boolean = false,
+    isFirstInPage: boolean = false,
   ): void {
-    this.props.ProductsStore.fetchProducts(params, isLoadMore, isRefresh);
+    this.props.ProductsStore.fetchProducts(
+      params,
+      isLoadMore,
+      isRefresh,
+      isFirstInPage,
+    );
   }
 
   private async loadMore(): Promise<any> {

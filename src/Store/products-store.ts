@@ -21,11 +21,12 @@ class ProductsStore {
     params: ICommonProduct,
     isLoadMore: boolean = true,
     isRefresh: boolean = true,
+    isFirstInPage: boolean = false,
   ): Promise<any> {
+    if (this.products.length && isFirstInPage) {
+      return;
+    }
     if (!isLoadMore || isRefresh) {
-      if (this.products.length && !isRefresh) {
-        return;
-      }
       Toast.loading("正在加载中...", 0);
       this.products = [];
       this.pageOptions.pageNumber = 1;

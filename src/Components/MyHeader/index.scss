@@ -2,7 +2,8 @@
   header {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
     z-index: 99;
     max-width: 640px;
@@ -12,9 +13,9 @@
   .am-navbar-left,
   // .am-navbar-title,
   .am-navbar-right {
-    flex: 0.2 !important;
+    flex: 0.143 !important;
   }
   .am-navbar-title {
-    flex: 0.6 !important;
+    flex: 0.8 !important;
   }
 }

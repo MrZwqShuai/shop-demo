@@ -10,6 +10,7 @@ import { hideHeaderPath, routesMap } from "../../Config/common-route";
 import MyHeader from "../MyHeader";
 import { Icon } from "antd-mobile";
 import MyPropover from "../MyPropover";
+import DirectionAuth from "../DirecttionAuth";
 
 interface Props {
   myRightContent?: Array<JSX.Element>;
@@ -95,10 +96,9 @@ export default class HeaderComponent extends React.Component<Props, State> {
 
   private renderMyRightContent(): Array<JSX.Element> {
     return [
-      <span
-        className="my-right-icon"
-        onClick={() => this.handleSettingClick()}
-      ></span>,
+      <DirectionAuth onPress={() => this.handleSettingClick()}>
+        <span className="my-right-icon"></span>
+      </DirectionAuth>,
       <MyPropover />,
     ];
   }

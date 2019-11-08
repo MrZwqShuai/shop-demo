@@ -58,7 +58,9 @@ const HomePage = routeAnimation(
       try {
         const { data } = await fetchHomeBanner<Array<Banner>>(params);
         this.setState({
-          banners: data.content,
+          banners: data.content.map((item) => {
+            return item.url
+          }),
         });
       } catch (e) {
         console.log("错误信息: ", e.message);

@@ -2,6 +2,7 @@ import * as React from "react";
 import "./index.scss";
 import routeAnimation from "../../../Config/animation/route-animation";
 import { Toast } from "antd-mobile";
+import DirectionAuth from "../../../Components/DirecttionAuth";
 enum FavoutiteEnum {
   Goods,
   Shop,
@@ -42,38 +43,54 @@ const MyPage = routeAnimation(
           <div className="mypage-body-wrap">
             {/* 个人资产 */}
             <div className="mypage-goods-wrap body-item">
-              <div className="body-item-row">
-                <span className="icon goods-pay"></span>
-                <span className="txt">待付款</span>
-              </div>
-              <div className="body-item-row">
-                <span className="icon goods-send"></span>
-                <span className="txt">待发货</span>
-              </div>
-              <div className="body-item-row">
-                <span className="icon goods-receive"></span>
-                <span className="txt">待收货</span>
-              </div>
-              <div className="body-item-row">
-                <span className="icon orders"></span>
-                <span className="txt">全部订单</span>
-              </div>
+              <DirectionAuth classname={"body-item-row"}>
+                <div className="body-item-row">
+                  <span className="icon goods-pay"></span>
+                  <span className="txt">待付款</span>
+                </div>
+              </DirectionAuth>
+
+              <DirectionAuth classname={"body-item-row"}>
+                {" "}
+                <div className="body-item-row">
+                  <span className="icon goods-send"></span>
+                  <span className="txt">待发货</span>
+                </div>
+              </DirectionAuth>
+
+              <DirectionAuth classname={"body-item-row"}>
+                <div className="body-item-row">
+                  <span className="icon goods-receive"></span>
+                  <span className="txt">待收货</span>
+                </div>
+              </DirectionAuth>
+
+              <DirectionAuth classname={"body-item-row"}>
+                <div className="body-item-row">
+                  <span className="icon orders"></span>
+                  <span className="txt">全部订单</span>
+                </div>
+              </DirectionAuth>
             </div>
             <div className="mypage-goods-star-wrap body-item">
-              <div
-                className="body-item-row"
-                onClick={() => this.goFavouritePage(FavoutiteEnum.Goods)}
+              <DirectionAuth
+                classname={"body-item-row"}
+                onPress={() => this.goFavouritePage(FavoutiteEnum.Goods)}
               >
-                <span className="icon goods-star"></span>
-                <span className="txt">商品收藏</span>
-              </div>
-              <div
-                className="body-item-row"
-                onClick={() => this.goFavouritePage(FavoutiteEnum.Shop)}
+                <div className="body-item-row">
+                  <span className="icon goods-star"></span>
+                  <span className="txt">商品收藏</span>
+                </div>
+              </DirectionAuth>
+              <DirectionAuth
+                classname={"body-item-row"}
+                onPress={() => this.goFavouritePage(FavoutiteEnum.Goods)}
               >
-                <span className="icon shop-star"></span>
-                <span className="txt">店铺收藏</span>
-              </div>
+                <div className="body-item-row">
+                  <span className="icon shop-star"></span>
+                  <span className="txt">店铺收藏</span>
+                </div>
+              </DirectionAuth>
               <div className="body-item-row">
                 <span className="icon">18</span>
                 <span className="txt">我的足迹</span>
