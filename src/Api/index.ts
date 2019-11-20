@@ -3,12 +3,13 @@ import { AxiosPromise } from "axios";
 import { Result } from "../Interface";
 
 /**
- * 获取app的登录状态
+ * 获取用户登录状态
  */
-export const fetchAppAuth = (): AxiosPromise<Result<void>> => {
+export const fetchAppAuth = <T>(data: object): AxiosPromise<Result<void>> => {
   return fetch({
     url: "/app",
     method: "get",
+    params: data,
   });
 };
 
@@ -142,7 +143,6 @@ export const fetchOrderCartListByUser = <T>(data): AxiosPromise<Result<T>> => {
   });
 };
 
-
 /**
  * 用户购物车删除
  * @param data
@@ -152,5 +152,92 @@ export const removeOrderCartByUser = <T>(data): AxiosPromise<Result<T>> => {
     url: "ordercart/remove",
     method: "post",
     params: data,
+  });
+};
+
+/**
+ * 用户头像上传
+ */
+export const uploadAvatar = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "auth/upload/avatar",
+    method: "post",
+    data: data,
+  });
+};
+
+/**
+ * 修改个人用户信息
+ * @param data
+ */
+export const updatePersonalInfo = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "setting/user/updatePersonalInfo",
+    method: "post",
+    params: data,
+  });
+};
+
+// 个人设置-收货地址管理接口
+
+/**
+ * 用户的收货地址列表
+ * @param data
+ */
+export const userShoppingAddressList = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "setting/user/address/list",
+    method: "get",
+    params: data,
+  });
+};
+
+/**
+ * 新增收货地址
+ * @param data
+ */
+export const addUserShoppingAddress = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "setting/user/address/add",
+    method: "post",
+    params: data,
+  });
+};
+
+/**
+ * 编辑收货地址
+ * @param data
+ */
+export const editUserShoppingAddress = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "setting/user/address/edit",
+    method: "post",
+    params: data,
+  });
+};
+
+/**
+ * 删除收货地址
+ * @param data
+ */
+export const removeUserShoppingAddress = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "setting/user/address/remove",
+    method: "post",
+    params: data,
+  });
+};
+
+/**
+ * 收货地址详情
+ * @param {number} userShoppingAddressId 收货地址主键id
+ */
+export const userShoppingAddressDetail = <T>(
+  userShoppingAddressId: number,
+): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: `setting/user/address/${userShoppingAddressId}`,
+    method: "get",
+    params: {},
   });
 };

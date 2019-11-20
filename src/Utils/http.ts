@@ -11,8 +11,8 @@ const history = createHashHistory();
 let userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
 console.log(userInfo, "userInfouserInfouserInfo");
 
-// const BASE_URL = "http://localhost:8081/wqshop/";
-const BASE_URL = "http://47.98.137.213:8081/wqshop/";
+const BASE_URL = "http://localhost:8081/wqshop/";
+// const BASE_URL = "http://47.98.137.213:8083/wqshop/";
 const LOGIN_ROUTE_PATH = "/auth/login";
 // 添加请求拦截器
 const instance = axios.create({

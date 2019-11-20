@@ -92,15 +92,12 @@ export default class SettingPage extends React.PureComponent {
   }
 
   private renderLeftContent(): JSX.Element {
-    const { username, nickname } =
+    const { username, nickname, avatar } =
       JSON.parse(localStorage.getItem("userInfo")) || {};
     return (
       <div className="user">
         <div className="avatar">
-          <img
-            src="https://img11.360buyimg.com/jdphoto/s120x120_jfs/t21160/90/706848746/2813/d1060df5/5b163ef9N4a3d7aa6.png"
-            alt=""
-          />
+          <img src={avatar} alt="头像" />
         </div>
         <div className="user-info">
           <span className="nickname">{nickname}</span>

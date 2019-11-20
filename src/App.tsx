@@ -28,9 +28,14 @@ class App extends React.Component<Props, State> {
    * 判断用户当前登录状态 可能token失效的情况 入口统一请求
    */
   private async fetchAuth(): Promise<void> {
-    const { data } = await fetchAppAuth();
-    console.log(data, "appauth");
+    // const { user_id } = JSON.parse(localStorage.getItem("userInfo")) || {};
+    const { data } = await fetchAppAuth({});
     if (data.code === 0) {
+      const refreshUserInfo = Object.assign(
+        JSON.parse(localStorage.getItem("userInfo")) || {},
+        data.content,
+      );
+      localStorage.setItem("userInfo", JSON.stringify(refreshUserInfo));
       // 登录成功状态
       this.props.RootStore.setUserInfo(
         JSON.parse(localStorage.getItem("userInfo")) || {},

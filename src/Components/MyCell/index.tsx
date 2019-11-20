@@ -35,7 +35,7 @@ export default class MyCell extends React.PureComponent<Props, State> {
   }
 
   private handleCellClick(): void {
-    Toast.info("老哥帮我写吧", 1.5);
+    Toast.info("老哥帮我写吧", 0.5);
     this.props.onCellClick(this.props.title);
   }
 }

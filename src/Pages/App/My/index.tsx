@@ -19,6 +19,7 @@ const MyPage = routeAnimation(
       };
     }
     public render() {
+      const { avatar } = JSON.parse(localStorage.getItem("userInfo")) || {};
       const { nickname, user_id } = this.state;
       return (
         <div className="mypage-wrap">
@@ -26,7 +27,12 @@ const MyPage = routeAnimation(
             <div className="user-info">
               <div className="user-avatar">
                 <img
-                  src="https://img11.360buyimg.com/jdphoto/s120x120_jfs/t21160/90/706848746/2813/d1060df5/5b163ef9N4a3d7aa6.png"
+                  style={{ borderRadius: "50%" }}
+                  src={
+                    avatar
+                      ? avatar
+                      : "https://img11.360buyimg.com/jdphoto/s120x120_jfs/t21160/90/706848746/2813/d1060df5/5b163ef9N4a3d7aa6.png"
+                  }
                   alt=""
                 />
               </div>

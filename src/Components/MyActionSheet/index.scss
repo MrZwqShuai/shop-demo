@@ -1,0 +1,49 @@
+.action-sheet-wrap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  .mask {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.3803921568627451);
+    transition: 0.3s ease;
+  }
+  .action-sheet-content {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    transition: 0.3s ease;
+    background-color: #ddd;
+    z-index: 9;
+    .action-ul {
+      padding-left: 0;
+    }
+    .action-li,
+    .action-foot {
+      width: 100%;
+      font-size: 18px;
+      padding: 0 8px;
+      height: 50px;
+      line-height: 50px;
+      box-sizing: border-box;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: center;
+      overflow-x: hidden;
+      background-color: #fff;
+      border-top: 1px solid rgba(221, 221, 221, 0.73);
+    }
+    .action-foot {
+      margin-top: 6px;
+    }
+  }
+}
