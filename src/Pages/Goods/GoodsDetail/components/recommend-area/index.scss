@@ -1,0 +1,40 @@
+.component-recommend-area {
+  margin-top: 12px;
+  padding: 10px;
+  background-color: #fff;
+  .title {
+    margin: 12px 0;
+    color: #262626;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .recommend-ul {
+    .recommend-li {
+      width: 33%;
+      height: 100%;
+      float: left;
+      // .li {
+      //   display: flex;
+      //   flex-direction: column;
+      // }
+      .img-wrap {
+        img {
+          height: 110px;
+        }
+      }
+      .name {
+        padding: 7px 0 0;
+        height: 3em;
+        line-height: 1.5em;
+        color: #333;
+        font-size: 12px;
+        font-weight: 400;
+        white-space: normal;
+      }
+      .price-wrap {
+        color: #f2270c;
+        font-size: 12px;
+      }
+    }
+  }
+}

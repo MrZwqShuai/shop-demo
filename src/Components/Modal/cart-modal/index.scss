@@ -15,14 +15,53 @@
     .header {
       display: flex;
       position: relative;
-      height: 0.6rem;
-      line-height: 0.6rem;
+      height: 1.48rem;
       padding-left: 0.1rem;
       color: #333;
-      background-color: #f3f2f8;
+      background-color: #fff;
+      .pop-img {
+        width: 90px;
+        height: 90px;
+        img {
+          position: absolute;
+          left: 10px;
+          top: -20px;
+          border-radius: 2px;
+          width: 90px;
+          height: 90px;
+        }
+      }
+      .header-content {
+        margin-left: 30px;
+        p {
+          margin: 0 !important;
+        }
+        .price {
+          color: #e4393c;
+          font-size: 10px;
+          em {
+            font-size: 16px;
+          }
+        }
+        .sku-choose {
+          font-size: 12px;
+        }
+        .sku-choose-value {
+          margin-left: 6px;
+          color: #333;
+        }
+      }
+      .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 26px;
+        touch-action: none;
+        z-index: 6;
+      }
     }
     .body {
-      height: 4rem;
+      // height: 4rem;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       background-color: #fff;
@@ -31,12 +70,28 @@
       }
     }
     .sure-btn {
-      height: 0.8rem;
-      line-height: 0.8rem;
+      display: flex;
+      height: 50px;
+      line-height: 50px;
       text-align: center;
       font-size: 0.31rem;
       color: #fff;
       background-color: #e4393c;
+      .btn {
+        flex: 1;
+        // height: 50px;
+        // line-height: 50px;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .add-cart-btn {
+        background: linear-gradient(138deg, #ffa600, #ffb000 77%, #ffbc00);
+      }
+      .buy-now-btn {
+        background: linear-gradient(-41deg, #ff4f18, #ff2000 24%, #f10000);
+      }
     }
   }
 }

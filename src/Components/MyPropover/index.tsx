@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 const Item = Popover.Item;
 
-const myImg = src => (
+const myImg = (src) => (
   <img
     src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`}
     className="am-icon am-icon-xs"
@@ -18,7 +18,7 @@ export default class MyPropover extends React.Component {
     selected: "",
   };
 
-  onSelect = opt => {
+  onSelect = (opt) => {
     console.log(opt.props);
     this.setState({
       visible: false,
@@ -29,7 +29,7 @@ export default class MyPropover extends React.Component {
     });
   };
 
-  handleVisibleChange = visible => {
+  handleVisibleChange = (visible) => {
     this.setState({
       visible,
     });
@@ -77,7 +77,7 @@ export default class MyPropover extends React.Component {
       <Item
         key="4"
         value="/home"
-        icon={myImg("tOtXhkIWzwotgGSeptou")}
+        // icon={myImg("tOtXhkIWzwotgGSeptou")}
         data-seed="logId"
       >
         首页
@@ -93,7 +93,7 @@ export default class MyPropover extends React.Component {
       <Item
         key="5"
         value="/channel"
-        icon={myImg("PKAgAqZWJVNwKsAJSmXd")}
+        // icon={myImg("PKAgAqZWJVNwKsAJSmXd")}
         style={{ whiteSpace: "nowrap" }}
       >
         分类
@@ -101,12 +101,16 @@ export default class MyPropover extends React.Component {
       <Item
         key="8"
         value="/auth/favourite"
-        icon={myImg("PKAgAqZWJVNwKsAJSmXd")}
+        // icon={myImg("PKAgAqZWJVNwKsAJSmXd")}
         style={{ whiteSpace: "nowrap" }}
       >
         我的关注
       </Item>,
-      <Item key="7" value="/my" icon={myImg("uQIYTFeRrjPELImDRrPt")}>
+      <Item
+        key="7"
+        value="/my"
+        //  icon={myImg("uQIYTFeRrjPELImDRrPt")}
+      >
         <span style={{ marginRight: 5 }}>功能反馈</span>
       </Item>,
     ];

@@ -1,13 +1,14 @@
-import * as React from 'react';
-import {inject, observer} from 'mobx-react';
-import './index.scss';
+import * as React from "react";
+import { inject, observer } from "mobx-react";
+import "./index.scss";
 interface Props {
   RootStore?: any;
+  modalVisibleType: string;
 }
 
 interface State {}
 
-@inject('RootStore')
+@inject("RootStore")
 @observer
 export default class CommonModalComponent extends React.Component<
   Props,
@@ -19,9 +20,11 @@ export default class CommonModalComponent extends React.Component<
   }
 
   public render() {
+    const { modalVisibleType, RootStore } = this.props;
+    const { modalVisible } = RootStore;
     return (
       <div>
-        {this.props.RootStore.cartModalVisbile ? (
+        {modalVisible[modalVisibleType] ? (
           <div
             className="cart-modal-wrapper"
             onClick={() => {
@@ -43,6 +46,7 @@ export default class CommonModalComponent extends React.Component<
   }
 
   private closeCartModal(): void {
-    this.props.RootStore.toggleCartModalVisbile();
+    const { modalVisibleType, RootStore } = this.props;
+    RootStore.toggleModalVisible(modalVisibleType);
   }
 }

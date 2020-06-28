@@ -41,7 +41,14 @@ export default class SettingPage extends React.PureComponent {
                 });
               }}
             />
-            <MyCell title="地址管理" />
+            <MyCell
+              title="地址管理"
+              onCellClick={() => {
+                this.props.history.push({
+                  pathname: "/setting/my_address",
+                });
+              }}
+            />
           </div>
           <div className="setting-account">
             <MyCell title="账号登录密码" />

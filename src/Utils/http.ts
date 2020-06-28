@@ -11,8 +11,9 @@ const history = createHashHistory();
 let userInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
 console.log(userInfo, "userInfouserInfouserInfo");
 
-const BASE_URL = "http://localhost:8081/wqshop/";
-// const BASE_URL = "http://47.98.137.213:8083/wqshop/";
+// const BASE_URL = "http://localhost:8081/wqshop/";
+// const BASE_URL = "http://localhost:8083/wqshop/";
+const BASE_URL = "http://47.98.137.213:8083/wqshop/";
 const LOGIN_ROUTE_PATH = "/auth/login";
 // 添加请求拦截器
 const instance = axios.create({
@@ -39,7 +40,7 @@ instance.interceptors.request.use(
     console.log("config配置:", config, Qs.stringify(config.data));
     return config;
   },
-  err => {
+  (err) => {
     Toast.fail("请求失败" + err.message);
     return Promise.reject(err);
   },
@@ -50,7 +51,9 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     const { data } = response;
     console.log("response:", response);
+    Toast.hide();
     if (data.code !== 0) {
+      Toast.fail(data.message, 1.5);
       console.log(data, "失败");
       if (data.code === -5) {
         // 用户无登录信息或登录信息失效
@@ -58,10 +61,9 @@ instance.interceptors.response.use(
         history.push(LOGIN_ROUTE_PATH);
       }
     }
-    Toast.hide();
     return response;
   },
-  err => {
+  (err) => {
     if (err) {
       // RootStore.setLoading(false);
       Toast.hide();

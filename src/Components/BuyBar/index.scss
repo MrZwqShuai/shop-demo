@@ -9,6 +9,7 @@
   // height: 1rem;
   transform: translateX(-50%);
   background: #fff;
+  z-index: 88;
   .customer-service {
     width: 48px;
     height: 100%;
@@ -54,6 +55,7 @@
     cursor: pointer;
   }
   .bar-m2 {
+    flex: 1;
     font-size: 14px;
     color: #fff;
     line-height: 50px;

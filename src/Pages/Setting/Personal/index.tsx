@@ -2,8 +2,9 @@ import * as React from "react";
 import "./index.scss";
 import MyHeader from "../../../Components/MyHeader";
 import MyCell from "../../../Components/MyCell";
-import { PickerView, DatePicker, List, Picker } from "antd-mobile";
+import { PickerView, DatePicker, List, Picker, Toast } from "antd-mobile";
 import { fetchAppAuth, updatePersonalInfo } from "../../../Api";
+import MyLocation from "../../../Components/MyLocation";
 
 interface Props {}
 
@@ -12,6 +13,7 @@ interface State {
   date: Date;
   datePickerVisible: boolean;
   genderPickerVisible: boolean;
+  locationVisible: boolean;
   personalInfo: PersonalInfo;
 }
 
@@ -22,8 +24,10 @@ interface PersonalInfo {
   birthday?: string;
   // 所在迪
   location?: string;
+  location_org?: string;
 }
 
+// 时间格式化
 function formatDate(date) {
   /* eslint no-confusing-arrow: 0 */
   const pad = n => (n < 10 ? `0${n}` : n);
@@ -48,6 +52,7 @@ export default class SettingPersonalPage extends React.PureComponent<
       date: now,
       datePickerVisible: false,
       genderPickerVisible: false,
+      locationVisible: false,
       personalInfo: JSON.parse(localStorage.getItem("userInfo")) || {},
     };
   }
@@ -58,9 +63,10 @@ export default class SettingPersonalPage extends React.PureComponent<
       date,
       datePickerVisible,
       genderPickerVisible,
+      locationVisible,
       personalInfo,
     } = this.state;
-    const { username, avatar, birthday, location, gender } = personalInfo;
+    const { username, avatar, birthday, location_org, gender } = personalInfo;
     return (
       <div className="setting-personal-page" style={{ marginTop: "45px" }}>
         <MyHeader centerContent={<span>个人信息</span>} rightContent={null} />
@@ -119,7 +125,23 @@ export default class SettingPersonalPage extends React.PureComponent<
             }}
           />
         </DatePicker>
-        <MyCell title="所在地" rightContent={<div>{location}</div>} />
+        <MyLocation
+          custom
+          initialValue={location_org && location_org.split(",")}
+          visible={locationVisible}
+          onChange={value => this.handleLocationChange(value)}
+          onOk={(value, extra) => {
+            this.handleLocationOk(value, extra);
+          }}
+        >
+          {/* <MyCell
+            title="所在地"
+            rightContent={<div>{location}</div>}
+            onCellClick={() => {
+              this.handleDateLocationClick();
+            }}
+          /> */}
+        </MyLocation>
       </div>
     );
   }
@@ -133,6 +155,10 @@ export default class SettingPersonalPage extends React.PureComponent<
     //     birthday: "1994-08-27",
     //   },
     // });
+  }
+
+  private updateSuccess(): void {
+    Toast.info("修改成功", 1);
   }
 
   private renderRightContent(avatar: string): JSX.Element {
@@ -158,6 +184,30 @@ export default class SettingPersonalPage extends React.PureComponent<
     this.props.history.push({
       pathname: "/setting/personal/avatar",
     });
+  }
+
+  private handleLocationChange(value): void {}
+
+  private async handleLocationOk(value, extra): Promise<void> {
+    console.log(value, extra, "extraextraextra---");
+    const locationArr = extra.split(",");
+    const province = locationArr[0] || "未知";
+    const city = locationArr[1] || "未知";
+    const area = locationArr[2] || "未知";
+    const { data } = await updatePersonalInfo({
+      province: province,
+      city: city,
+      area: area,
+      locationOrg: value.toString(),
+      location: extra,
+    });
+    if (data.code === 0) {
+      this.setState({
+        locationVisible: false,
+      });
+      this.fetchAuth();
+    }
+    // personalInfo
   }
 
   /**
@@ -206,6 +256,12 @@ export default class SettingPersonalPage extends React.PureComponent<
     });
   }
 
+  private handleDateLocationClick(): void {
+    this.setState({
+      locationVisible: !this.state.locationVisible,
+    });
+  }
+
   /**
    * 修改性别
    */
@@ -222,6 +278,7 @@ export default class SettingPersonalPage extends React.PureComponent<
     // const { user_id } = JSON.parse(localStorage.getItem("userInfo")) || {};
     const { data } = await fetchAppAuth({});
     if (data.code === 0) {
+      this.updateSuccess();
       const refreshUserInfo = Object.assign(
         JSON.parse(localStorage.getItem("userInfo")) || {},
         data.content,

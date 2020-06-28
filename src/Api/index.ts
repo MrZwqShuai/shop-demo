@@ -1,7 +1,7 @@
 import fetch from "../Utils/http";
 import { AxiosPromise } from "axios";
 import { Result } from "../Interface";
-
+import { registry, login } from "./user";
 /**
  * 获取用户登录状态
  */
@@ -46,18 +46,6 @@ export const fetchGoods = (data?: object): AxiosPromise => {
     url: "/goods",
     method: "get",
     params: data,
-  });
-};
-
-/**
- * 用户登陆
- * @returns token值
- */
-export const login = (data?: object): AxiosPromise<Result<string | number>> => {
-  return fetch({
-    url: "/auth/login",
-    method: "post",
-    data,
   });
 };
 
@@ -156,6 +144,18 @@ export const removeOrderCartByUser = <T>(data): AxiosPromise<Result<T>> => {
 };
 
 /**
+ * 用户购物车添加
+ * @param data
+ */
+export const addOrderCartByUser = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "ordercart/add",
+    method: "post",
+    params: data,
+  });
+};
+
+/**
  * 用户头像上传
  */
 export const uploadAvatar = <T>(data): AxiosPromise<Result<T>> => {
@@ -241,3 +241,28 @@ export const userShoppingAddressDetail = <T>(
     params: {},
   });
 };
+
+// system dictionary 字典接口
+/**
+ * 字典接口
+ */
+export const getDictionaries = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "sys/dic",
+    method: "get",
+    params: data,
+  });
+};
+
+/**
+ * 新增收货地址字典接口
+ */
+export const addCustomDictionaries = <T>(data): AxiosPromise<Result<T>> => {
+  return fetch({
+    url: "sys/dic/add",
+    method: "get",
+    params: data,
+  });
+};
+
+export { registry, login };

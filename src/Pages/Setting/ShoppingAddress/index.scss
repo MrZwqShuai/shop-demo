@@ -1,0 +1,13 @@
+.shopping-address-page {
+  width: 100vw;
+  max-width: 640px;
+  min-height: 100vh;
+  margin: auto;
+  padding-bottom: 60px;
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}

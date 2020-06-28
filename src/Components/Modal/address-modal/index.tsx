@@ -1,57 +1,83 @@
-import * as React from 'react';
-import {inject, observer} from 'mobx-react';
-import './index.scss';
-import CommonModalComponent from './../common-modal/index';
+import * as React from "react";
+import { inject, observer } from "mobx-react";
+import "./index.scss";
+import CommonModalComponent from "./../common-modal/index";
+import SettingShoppingAddressPage from "../../../Pages/Setting/ShoppingAddress";
+import { withRouter } from "react-router";
+import MyAddressCell from "../../MyAddressCell";
+import { userShoppingAddressList } from "../../../Api";
+import { Toast } from "antd-mobile";
 interface Props {
   RootStore?: any;
 }
-interface State {}
+interface State {
+  addressList: Array<object>;
+}
 
-@inject('RootStore')
+@inject("RootStore")
 @observer
-export default class CartModalComponent extends React.Component<Props, State> {
+@withRouter
+export default class AddressModalComponent extends React.Component<
+  Props,
+  State
+> {
   constructor(props: Props) {
     super(props);
-    this.state = {};
+    this.state = {
+      addressList: [],
+    };
   }
 
   public render() {
+    const { addressList } = this.state;
     return (
-      <CommonModalComponent>
-        <div className="header">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-        </div>
+      <CommonModalComponent modalVisibleType="ADDRESS">
+        <div className="address-header">配送至</div>
         <div className="body">
-          <div className="sku-kind">
-            <div className="sku-color">
-              <span>颜222色</span>
-              <div>
-                <span>玫瑰红</span>
-              </div>
-            </div>
-            <div className="sku-val">
-              <span>规格</span>
-              <div>
-                <span>大的</span>
-              </div>
-            </div>
-          </div>
+          {/* <SettingShoppingAddressPage {...this.props} /> */}
+          {addressList.map((address, index) => {
+            return <MyAddressCell forChoose addressInfo={address} />;
+          })}
         </div>
         <div
-          className="sure-btn"
+          className="address-sure-btn"
           onClick={() => {
-            this.closeCartModal();
+            this.goToNewAddress();
           }}
         >
-          确认
+          新增收货地址
         </div>
       </CommonModalComponent>
     );
   }
 
-  private closeCartModal(): void {
-    this.props.RootStore.toggleCartModalVisbile();
+  componentDidMount() {
+    this.fetchUserShoppingAddressList();
+  }
+  private fetchAddressList(): void {}
+
+  private async fetchUserShoppingAddressList(): Promise<void> {
+    // Toast.loading("加载中...", 0);
+    let { data } = await userShoppingAddressList({});
+    if (data.code === 0) {
+      let addressList = data.content || [];
+      addressList.map(address => {
+        if (address) {
+          return {
+            ...address,
+            showMask: false,
+          };
+        }
+      });
+      this.setState({
+        addressList: addressList,
+      });
+      Toast.hide();
+    }
+  }
+  private goToNewAddress(): void {
+    this.props.history.push({
+      pathname: "/setting/my_address/detail",
+    });
   }
 }

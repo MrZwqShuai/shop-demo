@@ -11,7 +11,7 @@ interface Porps {
 export default class DirectionAuth extends React.PureComponent<Porps> {
   static defaultProps = {
     onPress: () => {
-      Toast.info("没时间开发!", 1);
+      // Toast.info("没时间开发!", 1);
     },
   };
   render() {

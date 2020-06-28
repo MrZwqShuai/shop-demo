@@ -7,6 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 0.15rem;
+    background-color: #fff;
     .comments-text {
       font-size: 0.24rem;
     }
@@ -23,6 +24,7 @@
       padding-bottom: 0.35rem;
     }
     .comments-wrap {
+      padding: 0 7px;
       .user {
         display: flex;
         align-items: center;
@@ -44,6 +46,53 @@
         font-size: 0.22rem;
         color: #333;
       }
+    }
+    .question-wrap {
+      .question-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+        padding: 0 7px;
+        .question-txt {
+          padding-right: 80px;
+          color: #333;
+          font-size: 12px;
+        }
+        .question-txt::before {
+          content: "问";
+          display: inline-block;
+          margin: -1px 5px 0 0;
+          width: 14px;
+          height: 14px;
+          line-height: 14px;
+          border-radius: 2px;
+          background-color: #ff9600;
+          color: #fff;
+          font-size: 10px;
+          vertical-align: middle;
+          text-align: center;
+        }
+        .question-num {
+          color: #999;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+  .comments-tag-wrap {
+    margin-top: 12px;
+    padding: 0 10px;
+    .tag-item {
+      display: inline-block;
+      margin: 0 12px 12px 0;
+      background: #fcedeb;
+      border-radius: 15px;
+      padding: 0 10px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 11px;
+      color: #262626;
     }
   }
 }

@@ -8,6 +8,8 @@ import { withRouter } from "react-router-dom";
 import { starGoodsByUser } from "../../../../../Api";
 import { toJS } from "mobx";
 import { Toast } from "antd-mobile";
+import MyCell from "../../../../../Components/MyCell";
+import DirectionAuth from "../../../../../Components/DirecttionAuth";
 interface Props {
   goodsId?: string;
   goodsSpuDetail: GoodsSpuDetail;
@@ -16,7 +18,7 @@ interface State {
   followed: number;
 }
 
-@inject("RootStore")
+@inject("RootStore", "ModalStore")
 @withRouter
 @observer
 export default class BuyAreaComponent extends React.Component<Props, State> {
@@ -28,6 +30,7 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
   }
 
   public render() {
+    const { skuViewVal, addressVal } = this.props.ModalStore;
     const { goodsSpuDetail } = this.props;
     return (
       <div className="buy-area-wrapper ">
@@ -56,13 +59,15 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
           <span>.00</span>
         </div>
         <div className="goods-sku m1">
-          {this.renderCell("规格", "已选: 4人座")}
+          {this.renderCell("已选", skuViewVal, "CART")}
         </div>
-        <div className="goods-sku m1">
+        {/* <div className="goods-sku m1">
           {this.renderCell("参数", "品牌型号")}
-        </div>
+        </div> */}
         <div className="goods-sku m1">
-          {this.renderCell("送至", "芜湖市鸠江区龙山新苑")}
+          <DirectionAuth>
+            {this.renderCell("送至", addressVal, "ADDRESS")}
+          </DirectionAuth>
         </div>
       </div>
     );
@@ -75,12 +80,21 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
     });
   }
 
-  private renderCell(textView: string, linearLayout: string) {
+  componentWillUnmount() {
+    this.props.RootStore.setToggleModalVisible("CART", false);
+    this.props.RootStore.setToggleModalVisible("ADDRESS", false);
+  }
+
+  private renderCell(
+    textView: string,
+    linearLayout: string,
+    modalType?: string,
+  ) {
     return (
       <div
         className="cell-wrap"
         onClick={() => {
-          this.showSku();
+          this.showSku(modalType);
         }}
       >
         <div className="cell-left">
@@ -123,7 +137,7 @@ export default class BuyAreaComponent extends React.Component<Props, State> {
     }
   }
 
-  private showSku(): void {
-    this.props.RootStore.toggleCartModalVisbile();
+  private showSku(modalType: string): void {
+    this.props.RootStore.toggleModalVisible(modalType);
   }
 }

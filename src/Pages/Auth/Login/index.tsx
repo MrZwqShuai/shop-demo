@@ -44,7 +44,7 @@ export default class LoginPage extends React.PureComponent<Props, State> {
           <InputItem
             clear
             placeholder="用户名/手机号"
-            onChange={value => {
+            onChange={(value) => {
               this.handleUsernameChange(value);
             }}
           />
@@ -52,7 +52,7 @@ export default class LoginPage extends React.PureComponent<Props, State> {
             type="password"
             clear
             placeholder="请输入密码"
-            onChange={value => {
+            onChange={(value) => {
               this.handlePasswordChange(value);
             }}
           />
@@ -69,6 +69,18 @@ export default class LoginPage extends React.PureComponent<Props, State> {
           >
             登录
           </Button>
+          <WhiteSpace />
+          <div
+            className="registry-wrap"
+            onClick={() => {
+              this.props.history.push({
+                pathname: "registry",
+              });
+            }}
+          >
+            <span>还有没账号?</span>{" "}
+            <span className="fast-registry-txt">快速注册</span>
+          </div>
         </div>
       </div>
     );
@@ -85,7 +97,6 @@ export default class LoginPage extends React.PureComponent<Props, State> {
         password: this.state.password,
       });
       const { content, message } = data;
-      console.log(data, "dasdsd");
       // return;
       if (content === 1) {
         Toast.fail(message, 2);
@@ -109,7 +120,15 @@ export default class LoginPage extends React.PureComponent<Props, State> {
         Toast.success("登录成功", 2);
         const loginTimer = setTimeout(() => {
           clearTimeout(loginTimer);
-          this.props.history.go(-1);
+          const { from } = this.props.history.location.query || {};
+          console.log(this.props.history.location, from);
+          if (from == "registry") {
+            this.props.history.push({
+              pathname: "/home",
+            });
+          } else {
+            this.props.history.go(-1);
+          }
         }, 800);
         this.props.RootStore.setLogin(true);
       }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, withRouter } from "react-router-dom";
 import "./index.scss";
-import categoryIcon from "./assets/images/category.png";
+import categoryIcon from "./assets/images/fenlei.png";
 import searchIcon from "./assets/images/search.png";
 import personalIcon from "./assets/images/personal.png";
 import { inject, observer } from "mobx-react";
@@ -43,7 +43,9 @@ export default class HeaderComponent extends React.Component<Props, State> {
         <ul className="headerUl">
           <li className="headerLeft">
             <Link to="/channel">
-              <div>{/* <img src={categoryIcon} alt="分类" /> */}</div>
+              <div>
+                <img src={categoryIcon} alt="分类" />
+              </div>
             </Link>
           </li>
           <li className="headerCenter">

@@ -6,6 +6,7 @@ import selectedIcon from "../../assets/images/selected.png";
 import shopIcon from "../../assets/images/shop.png";
 import "./index.scss";
 import { OrderCart } from "../../../../../Interface";
+import MyAdderSubtracter from "../../../../../Components/MyAdderSubtracter";
 interface Props {
   RootStore?: any;
   orderCart: OrderCart;
@@ -58,7 +59,7 @@ export default class CarItemComponent extends React.Component<Props, State> {
               <p
                 className="sku"
                 onClick={() => {
-                  this.props.RootStore.toggleCartModalVisbile();
+                  this.props.RootStore.toggleModalVisible("CART");
                 }}
               >
                 0.549kg/件，红烧牛肉，五连包
@@ -68,7 +69,10 @@ export default class CarItemComponent extends React.Component<Props, State> {
                   ￥<em>{price}</em>
                   .00
                 </span>
-                <div className="add-more">
+                <MyAdderSubtracter
+                  onChange={value => this.handleAddSubtracterChange(value)}
+                />
+                {/* <div className="add-more">
                   <span className="minus" onClick={this.removeGoodsNumber}>
                     ➖
                   </span>
@@ -82,7 +86,7 @@ export default class CarItemComponent extends React.Component<Props, State> {
                   <span className="plus" onClick={this.addGoodsNumber}>
                     ➕
                   </span>
-                </div>
+                </div> */}
               </div>
               <div className="goods-sub-line">
                 <span>加入关注</span>
@@ -124,20 +128,7 @@ export default class CarItemComponent extends React.Component<Props, State> {
     });
   }
 
-  private handleChange(e): void {
-    this.setState({
-      goodsnumber: e.target.value,
-    });
-  }
-
-  private addGoodsNumber(e): void {
-    e.stopPropagation();
-  }
-
-  private removeGoodsNumber(e): void {
-    e.stopPropagation();
-    return;
-  }
+  private handleAddSubtracterChange(value: number): void {}
 
   /**
    * 收藏goods
@@ -156,7 +147,6 @@ export default class CarItemComponent extends React.Component<Props, State> {
    */
   private skuChoose(): void {
     console.log(this.props.RootStore.toggleCartModalVisbile, "---------");
-    const { toggleCartModalVisbile } = this.props.RootStore;
-    toggleCartModalVisbile();
+    this.props.RootStore.toggleModalVisible("CART");
   }
 }
